@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo Installing dependencies...
+      - npm uninstall -g cdk
+      - npm install -g aws-cdk typescript
+      - echo Installing CDK application...
+      - npm install
+  build:
+    commands:
+      - echo Build started `date`
+      - echo Synthesizing AWS CloudFormation template...
+      - cdk synth quickstart --parameters IdeStackTemplateURL=$IDE_STACK_TEMPLATE_URL
+  post_build:
+    commands:
+      - echo Build finished `date`
+      - echo Validating AWS CloudFormation template...
+      - >-
+        aws cloudformation validate-template --template-body
+        file://cdk.out/quickstart.template.json
+artifacts:
+  files:
+    - cdk.out/quickstart.template.json
