@@ -4,9 +4,9 @@ phases:
     runtime-versions:
       nodejs: 10
     commands:
-      - echo Installing dependencies...
-      - npm uninstall -g cdk
-      - npm install -g aws-cdk typescript
+      - echo Make sure AWS CDK and TypeScript are installed...
+      - npm install -g aws-cdk
+      - npm install -g typescript
       - echo Installing CDK application...
       - npm install
   build:
