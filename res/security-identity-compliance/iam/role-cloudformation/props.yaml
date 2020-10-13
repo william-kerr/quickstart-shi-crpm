@@ -60,6 +60,7 @@ policies:
             - 's3:*'
             - 'sns:*'
             - 'ssm:DeleteDocument'
+            - 'ssm:DescribeDocument'
             - 'ssm:GetDocument'
           Resource: '*'
 
