@@ -76,5 +76,8 @@ export class IdeStack extends cdk.Stack {
     cr.addPropertyOverride('cloud9EnvironmentId', c9.ref);
     cr.addPropertyOverride('instanceProfileName', instanceProfile.ref);
     cr.addPropertyOverride('ssmDocumentName', ssmDoc.ref);
+    
+    // Cloud9 environment name
+    new cdk.CfnOutput(this, 'Cloud9EnvironmentName', {value: c9.attrName});
   }
 }

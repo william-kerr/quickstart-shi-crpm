@@ -151,8 +151,5 @@ export class CicdStack extends cdk.Stack {
     
     // CodePipeline pipeline name
     new cdk.CfnOutput(this, 'CodePipelineName', {value: pipeline.ref});
-    
-    // CodePipeline pipeline version
-    new cdk.CfnOutput(this, 'CodePipelineVersion', {value: pipeline.attrVersion});
   }
 }
