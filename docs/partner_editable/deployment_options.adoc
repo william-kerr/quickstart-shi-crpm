@@ -1,4 +1,3 @@
-// DONE
 // There are generally two deployment options. If additional are required, add them here
 
 This Quick Start provides one deployment option:

@@ -1,4 +1,3 @@
-// DONE
 :quickstart-project-name: quickstart-shi-crpm
 :partner-product-name: SHI CRPM
 :partner-product-short-name: CRPM

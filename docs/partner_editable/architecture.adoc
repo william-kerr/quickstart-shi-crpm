@@ -1,4 +1,3 @@
-// DONE
 Deploying this Quick Start for an infrastructure CI/CD pipeline and IDE with
 default parameters builds the following _{partner-product-short-name}_ environment in the
 AWS Cloud.

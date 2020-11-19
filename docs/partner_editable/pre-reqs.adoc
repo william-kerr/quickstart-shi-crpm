@@ -1,4 +1,3 @@
-// DONE
 // If no preperation is required, remove all content from here
 
 ==== Prepare your AWS account
