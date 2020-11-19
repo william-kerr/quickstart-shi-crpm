@@ -1,21 +1,12 @@
+// DONE
 // Add any tips or answers to anticipated questions. This could include the following troubleshooting information. If you don’t have any other Q&A to add, change “FAQ” to “Troubleshooting.”
 
 == FAQ
 
-*Q.* I encountered a *CREATE_FAILED* error when I launched the Quick Start.
+*Q.* The AWS CodePipeline pipeline failed at the *Deploy* stage after I approved it.
 
-*A.* If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with *Rollback on failure* set to *Disabled*. (This setting is under *Advanced* in the AWS CloudFormation console, *Options* page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)
-// If you’re deploying on Linux instances, provide the location for log files on Linux, or omit this sentence.
-
-WARNING: When you set *Rollback on failure* to *Disabled*, you continue to incur AWS charges for this stack. Please make sure to delete the stack when you finish troubleshooting.
-
-For additional information, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html[Troubleshooting AWS CloudFormation^] on the AWS website.
-
-*Q.* I encountered a size limitation error when I deployed the AWS CloudFormation templates.
-
-*A.* We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see the http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html[AWS documentation^].
-
+*A.* When the CI/CD pipeline is created, it will automatically run for the first time even though nothing has changed.  After approving it, sometimes it shows as failed even though nothing failed.  This can also happen after changing a property to the AWS CodePipeline pipeline resource.  If everything looks as expected after the pipeline finishes running, you can ignore the failure notice.
 
 == Troubleshooting
 
-<Steps for troubleshooting the deployment go here.>
+Please check the *Events* tab on the CloudFormation stacks created by this Quick Start for error explanations.  Also, click the *Details* link on the *Build* or *Deploy* stages of the pipeline to view failure details.  Check the AWS CodeCommit code commit diff to see what changes triggered the pipeline.

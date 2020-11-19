@@ -1,3 +1,4 @@
+// DONE
 The following Regions are currently supported by this Quick Start.
 
 - _us-east-1 (N. Virginia)_

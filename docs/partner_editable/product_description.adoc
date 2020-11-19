@@ -1,11 +1,11 @@
-// Replace the content in <>
+// DONE
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
 The Quick Start demonstrates how to create CI/CD infrastructure that watches itself for changes.
 When changes are made to the properties that define the pipeline, the pipeline is updated.
 The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment for
-ease of use.  AWS CDK code is used in conjunction with CRPM property files.
+ease of use.  AWS CDK code is used in conjunction with {partner-product-short-name} property files.
 
 Managing cloud resources ultimately boils down to managing properties.  [CRPM](https://shi.github.io/crpm)
 (Cloud Resource Property Manager) helps organize all of those properties by importing bite-sized YAML files,

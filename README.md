@@ -1,5 +1,7 @@
 # AWS Quick Start
 
+NOTE: THIS DOCUMENTATION CAN BE DELETED WHEN THE QUICK START GOES LIVE
+
 Create a CI/CD pipeline that watches itself for changes, and an IDE that can be used to edit the pipeline infrastructure code.
 
 ## Infrastructure Diagram

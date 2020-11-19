@@ -1,4 +1,5 @@
-Deploying this Quick Start for a new virtual private cloud (VPC) with
+// DONE
+Deploying this Quick Start for an infrastructure CI/CD pipeline and IDE with
 default parameters builds the following _{partner-product-short-name}_ environment in the
 AWS Cloud.
 
@@ -10,21 +11,14 @@ image::../images/architecture_diagram.png[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* A highly available architecture that spans two Availability Zones.*
-* A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*
+* An infrastructure CI/CD pipeline.
+* An AWS Cloud9 IDE with infrastructure code checked out and {partner-product-short-name} installed.
 
-In the public subnets:
+In the AWS Cloud9 IDE:
 
-* Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*
-* A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to EC2 instances in public and private subnets.*
-
-In the private subnets:
-// Add bullet points for any additional components that are included in the deployment. Make sure that the additional components are also represented in the architecture diagram.
-* <describe any additional components>.
-
-*The template that deploys the Quick Start into an existing VPC skips
-the components marked by asterisks and prompts you for your existing VPC
-configuration.
+* The AWS CodeCommit repository that is created by the Quick Start, is
+cloned in the IDE.  This allows you to easily edit the infrastructure
+code, commit and push changes from the IDE to trigger the pipeline to update
+the infrastructure.
+* {partner-product-short-name} is installed in the IDE, so that you are ready to
+import additional resource property templates into the CDK application.
