@@ -3,7 +3,7 @@ name: main-documentation
 on:
   push:
     branches:
-    - master
+    # - master
     - main
 jobs:
   build-adocs:
@@ -21,8 +21,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.x
-    - name: Generate dynamic content.
-      run: ./docs/boilerplate/.utils/generate_dynamic_content.sh
+    # - name: Generate dynamic content.
+    #   run: ./docs/boilerplate/.utils/generate_dynamic_content.sh
     - name: Run local actions
       id: adoc
       uses: ./docs/boilerplate/.actions/asciidoctor-action

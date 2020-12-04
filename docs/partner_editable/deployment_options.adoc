@@ -3,5 +3,3 @@
 This Quick Start provides one deployment option:
 
 * *Deploy infrastructure built with {partner-product-short-name} into an existing VPC*. This option provisions an IDE with {partner-product-short-name} along with a CI/CD pipeline in your existing AWS infrastructure.
-
-The Quick Start provides a template for this option.

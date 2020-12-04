@@ -5,19 +5,23 @@ AWS Cloud.
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture1]
 .Quick Start architecture for _{partner-product-short-name}_ on AWS
-[link=images/architecture_diagram.png]
-image::../images/architecture_diagram.png[Architecture,width=648,height=439]
+[link=images/architecture_diagram.jpg]
+image::../images/architecture_diagram.jpg[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* An infrastructure CI/CD pipeline.
-* An AWS Cloud9 IDE with infrastructure code checked out and {partner-product-short-name} installed.
+* AWS CodeCommit hosting a repository
+* AWS CodeBuild to test commits pushed to the repository
+* AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
+* An EventBridge rule for triggering AWS CodeBuild projects.
+* IAM Roles
+* An AWS Cloud9 IDE containing the infrastructure code and {partner-product-short-name} installed.
+* Custom Lambda resources
+* S3 bucket for code artifacts
 
-In the AWS Cloud9 IDE:
+[#architecture2]
+.Process workflow for _{partner-product-short-name}_ Quick Start deployment
+[link=images/architecture_diagram_1.png]
+image::../images/architecture_diagram_1.png[Architecture,width=648,height=439]
 
-* The AWS CodeCommit repository that is created by the Quick Start, is
-cloned in the IDE.  This allows you to easily edit the infrastructure
-code, commit and push changes from the IDE to trigger the pipeline to update
-the infrastructure.
-* {partner-product-short-name} is installed in the IDE, so that you are ready to
-import additional resource property templates into the CDK application.
+Figure 2 shows the ...

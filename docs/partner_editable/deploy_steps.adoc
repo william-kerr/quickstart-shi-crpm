@@ -32,7 +32,7 @@ Sign into your AWS account, and choose the following option to launch the AWS Cl
 ^|http://qs_template_link[View template^]
 |===
 
-WARNING: When deploying the infrastructure CI/CD pipeline and IDE with {partner-product-short-name} into an existing VPC, make sure that you have a default VPC with a default public subnet for the IDE instance. Theis subnet requires internet access, to allow instance to download software.
+WARNING: When deploying the infrastructure CI/CD pipeline and IDE with {partner-product-short-name} into an existing VPC, make sure that you have a default VPC with a default public subnet for the IDE instance. This subnet requires internet access, to allow instances to download software.
 
 Each deployment takes about {deployment_time} to complete.
 
