@@ -1,0 +1,399 @@
+{
+  "Description": "Cloud9 IDE with crpm pre-installed and quick start code checked out (qs-1rcmkus2j)",
+  "Parameters": {
+    "RepoName": {
+      "Type": "String",
+      "Description": "CodeCommit repository name"
+    }
+  },
+  "Resources": {
+    "EnvironmentEC2": {
+      "Type": "AWS::Cloud9::EnvironmentEC2",
+      "Properties": {
+        "InstanceType": "t3.small",
+        "Description": "Created by an AWS Quick Start.  CRPM is pre-installed and the infrastructure code master branch is checked out.",
+        "Name": {
+          "Ref": "AWS::StackName"
+        },
+        "Repositories": [
+          {
+            "PathComponent": "/quick-start",
+            "RepositoryUrl": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://git-codecommit.",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ".amazonaws.com/v1/repos/",
+                  {
+                    "Ref": "RepoName"
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/EnvironmentEC2"
+      }
+    },
+    "EC2Role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Description": "This role is included in an instance profile that is associated with an EC2 instance so SSM commands can be run on it",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/EC2Role"
+      }
+    },
+    "InstanceProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "EC2Role"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/InstanceProfile"
+      }
+    },
+    "Document": {
+      "Type": "AWS::SSM::Document",
+      "Properties": {
+        "Content": {
+          "schemaVersion": "2.2",
+          "description": "Configure Cloud9 Amazon Linux EC2 instance",
+          "mainSteps": [
+            {
+              "action": "aws:runShellScript",
+              "name": "InstallCRPM",
+              "inputs": {
+                "runCommand": [
+                  "runuser -l ec2-user -c 'npm install -g crpm typescript'"
+                ],
+                "timeoutSeconds": 3600
+              }
+            }
+          ]
+        },
+        "DocumentType": "Command"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/Document"
+      }
+    },
+    "LambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:AssociateIamInstanceProfile",
+                    "ec2:DescribeInstances",
+                    "ec2:RebootInstances",
+                    "iam:PassRole",
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "s3:DeleteObject",
+                    "s3:DeleteObjectVersion",
+                    "s3:ListBucketVersions",
+                    "s3:PutObject",
+                    "ssm:DescribeInstanceInformation",
+                    "ssm:SendCommand"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/LambdaRole"
+      }
+    },
+    "Function": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "ZipFile": "const aws = require('aws-sdk');\nconst response = require('cfn-response');\nconst util = require('util');\n\nconst ec2 = new aws.EC2({ apiVersion: '2016-11-15' });\nconst ssm = new aws.SSM({ apiVersion: '2014-11-06' });\nconst send = util.promisify(response.send);\n\nexports.handler =  async function(event, context) {\n  const cloud9EnvironmentId = event.ResourceProperties.cloud9EnvironmentId;\n  console.log(event.RequestType, 'Cloud9 Environment:', cloud9EnvironmentId);\n  \n  if (event.RequestType != 'Create') {\n    await send(event, context, response.SUCCESS);\n    return;\n  }\n  \n  try {\n    const instanceParams = {\n      Filters: [\n        {\n          Name: 'tag:aws:cloud9:environment',\n          Values: [\n            cloud9EnvironmentId\n          ]\n        }\n      ]\n    };\n    \n    // Get the instance ID\n    let data = await ec2.describeInstances(instanceParams).promise();\n    const instanceId = data.Reservations[0].Instances[0].InstanceId;\n    console.log('Instance ID:', instanceId);\n      \n    // Associate an instance profile for SSM\n    const instanceProfileName = event.ResourceProperties.instanceProfileName;\n    await ec2.associateIamInstanceProfile({\n      IamInstanceProfile: {\n        Name: instanceProfileName\n      },\n      InstanceId: instanceId\n    }).promise();\n    console.log('Associated instance profile', instanceProfileName);\n    \n    // Reboot the instance to make it available in SSM sooner\n    console.log('Rebooting Instance');\n    await ec2.rebootInstances({\n      InstanceIds: [\n        instanceId\n      ]\n    }).promise();\n    \n    // Wait for the instance to be running\n    await ec2.waitFor('instanceRunning', instanceParams).promise();\n    console.log('Instance Running');\n    \n    for (var i = 0; i < 16; i++) {\n      console.log('Waiting for SSM');\n      data = await ssm.describeInstanceInformation({\n        Filters: [\n          {\n            Key: 'InstanceIds',\n            Values: [\n              instanceId\n            ]\n          }\n        ]\n      }).promise();\n      if (data.InstanceInformationList.length > 0) {\n        console.log('Instance Ready');\n        break;\n      } else if (i == 15) {\n        await send(event, context, response.FAILED, { Error: 'Instance is not available in SSM' });\n      }\n      \n      // Sleep 15 seconds\n      await new Promise((resolve) => setTimeout(resolve, 15000));\n    }\n    \n    // Run a configuration script on the instance\n    const ssmDocumentName = event.ResourceProperties.ssmDocumentName;\n    data = await ssm.sendCommand({\n      DocumentName: ssmDocumentName,\n      CloudWatchOutputConfig: {\n        CloudWatchLogGroupName: `/aws/lambda/${context.functionName}`,\n        CloudWatchOutputEnabled: true\n      },\n      Comment: 'Configure Cloud9 Environment',\n      InstanceIds: [\n        instanceId\n      ]\n    }).promise();\n    console.log('Sent configuration script for execution via SSM', ssmDocumentName);\n  } catch (err) {\n    await send(event, context, response.FAILED, err);\n    return;\n  }\n  \n  await send(event, context, response.SUCCESS);\n};\n"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x",
+        "Description": "Configures a Cloud9 instance",
+        "Timeout": 300
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/Function"
+      }
+    },
+    "CustomResource": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "Function",
+            "Arn"
+          ]
+        },
+        "cloud9EnvironmentId": {
+          "Ref": "EnvironmentEC2"
+        },
+        "instanceProfileName": {
+          "Ref": "InstanceProfile"
+        },
+        "ssmDocumentName": {
+          "Ref": "Document"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/CustomResource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Modules": "aws-cdk=1.85.0,@aws-cdk/assets=1.67.0,@aws-cdk/aws-applicationautoscaling=1.67.0,@aws-cdk/aws-autoscaling-common=1.67.0,@aws-cdk/aws-cloud9=1.67.0,@aws-cdk/aws-cloudformation=1.67.0,@aws-cdk/aws-cloudwatch=1.67.0,@aws-cdk/aws-codebuild=1.67.0,@aws-cdk/aws-codecommit=1.67.0,@aws-cdk/aws-codeguruprofiler=1.67.0,@aws-cdk/aws-codepipeline=1.67.0,@aws-cdk/aws-ec2=1.67.0,@aws-cdk/aws-ecr=1.67.0,@aws-cdk/aws-ecr-assets=1.67.0,@aws-cdk/aws-events=1.67.0,@aws-cdk/aws-iam=1.67.0,@aws-cdk/aws-kms=1.67.0,@aws-cdk/aws-lambda=1.67.0,@aws-cdk/aws-logs=1.67.0,@aws-cdk/aws-s3=1.67.0,@aws-cdk/aws-s3-assets=1.67.0,@aws-cdk/aws-sqs=1.67.0,@aws-cdk/aws-ssm=1.67.0,@aws-cdk/cloud-assembly-schema=1.67.0,@aws-cdk/core=1.67.0,@aws-cdk/custom-resources=1.67.0,@aws-cdk/cx-api=1.67.0,@aws-cdk/region-info=1.67.0,jsii-runtime=node.js/v14.11.0"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ide/CDKMetadata/Default"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Outputs": {
+    "Cloud9EnvironmentName": {
+      "Value": {
+        "Fn::GetAtt": [
+          "EnvironmentEC2",
+          "Name"
+        ]
+      }
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
