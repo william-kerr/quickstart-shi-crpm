@@ -1,5 +1,10 @@
 {
   "Description": "Cloud9 IDE with crpm pre-installed and quick start code checked out (qs-1rcmkus2j)",
+  "Metadata": {
+    "QuickStartDocumentation": {
+      "EntrypointName": "Cloud9 IDE with crpm pre-installed"
+    }
+  },
   "Parameters": {
     "RepoName": {
       "Type": "String",
