@@ -4,5 +4,5 @@
 
 This Quick Start reference deployment guide provides step-by-step instructions for deploying infrastructure with {partner-product-short-name} on the AWS Cloud.
 
-This Quick Start is a demonstration for users who would like to create cloud infrastructure solutions that are broken down into YAML property files, which are stitched together with AWS CDK code.
+It is a demonstration for users who would like to create cloud infrastructure solutions that are broken down into YAML property files, which are stitched together with AWS CDK code.
 With this approach, YAML files are used for property assignment and TypeScript files are used for storing logic.
