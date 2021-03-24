@@ -1,5 +1,5 @@
 :quickstart-project-name: quickstart-shi-crpm
-:partner-product-name: SHI CRPM
+:partner-product-name: Cloud Resource Property Manager
 :partner-product-short-name: CRPM
 :partner-company-name: SHI
 :doc-month: March

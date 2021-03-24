@@ -29,11 +29,11 @@ Quick Start source code into an S3 bucket.  That source code is used to initiali
 AWS CodeCommit repository at time of creation.
 
 As a second prerequisite, AWS CloudFormation creates an AWS Cloud9 environment and executes
-an automation document to install CRPM, so that it's available to use when the IDE is opened.
+an automation document to install {partner-product-short-name}, so that it's available to use when the IDE is opened.
 The AWS CodeCommit repository is also copied into the Cloud9 IDE, so that infrastructure
 code is ready to edit.
 
 When someone opens the Cloud9 IDE, edits the infrastructure code, commits the change and pushes it,
 it triggers AWS CodePipeline to fetch the source from CodeCommit, synthesize a CloudFormation template
-from AWS CDK code, validate the template, and then create a change set.  After a human logs into
-the AWS Console and approves the change set, the change set is executed, and the infrastructure is updated.
+from AWS CDK code, validate the template, and then create a change set.  After a manual approval the change set, 
+the change set is executed, and the infrastructure is updated.

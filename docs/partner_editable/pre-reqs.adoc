@@ -2,4 +2,8 @@
 
 ==== Prepare your AWS account
 
-The Quick Start will deploy a Cloud9 EC2 instance into an existing default subnet in an existing default VPC.  You will want that EC2 instance to be able to reach the Internet from that default subnet in order to download software.
+The Quick Start will deploy a Cloud9 EC2 instance into an existing default subnet in an existing default VPC.  The default VPC should have internet access for the Cloud9 IDE to be able to download and install the {partner-product-short-name} software.
+
+==== Prepare for the CDK deployment
+
+To deploy this stack, you must have the https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html[AWS CLI configured^], and TypeScript and CDK installed.
