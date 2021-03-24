@@ -13,3 +13,4 @@ cdk.out
 
 # Docs
 /docs/index.html
+.DS_Store
