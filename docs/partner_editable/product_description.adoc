@@ -6,7 +6,7 @@ When changes are made to the properties that define the pipeline, the pipeline i
 The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment for
 ease of use.  AWS CDK code is used in conjunction with {partner-product-short-name} property files.
 
-Managing cloud resources ultimately boils down to managing properties. https://shi.github.io/crpm[CRPM^]
+When you manage cloud resources, you manage the properties of the resources. https://shi.github.io/crpm[CRPM^]
 helps organize all of those properties by importing YAML files, which are stitched together with AWS CDK.  
 It keeps all of what's good about YAML in YAML, and puts all of the logic into structured CDK code. 
 By focusing on keeping properties organized, it is possible to build complex infrastructure while keeping technical debt to a minimum.
