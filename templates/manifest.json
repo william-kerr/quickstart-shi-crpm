@@ -1,0 +1,736 @@
+{
+  "version": "6.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "quickstart": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "quickstart.template.json",
+        "stackName": "quickstart-shi-crpm-ci-cd"
+      },
+      "metadata": {
+        "/quickstart/IdeStackTemplateURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdeStackTemplateURL",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:18:45)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CloudFormationRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudFormationRole",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:30:21)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Bucket",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:37:24)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/LambdaRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaRole",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:49:20)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Function": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Function",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:60:16)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CustomResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomResource",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:67:16)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Repository": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Repository",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:77:18)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CodeBuildRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodeBuildRole",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:84:25)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Project": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Project",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:95:21)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CodePipelineRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodePipelineRole",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:101:26)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Pipeline": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Pipeline",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:121:22)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/EventsRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventsRole",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:127:24)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Rule": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Rule",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:139:5)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/Stack": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Stack",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:147:5)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CodeCommitURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodeCommitURL",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:150:5)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CodePipelineName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodePipelineName",
+            "trace": [
+              "new CicdStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ci-cd-stack.ts:153:5)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/quickstart/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:51:24)",
+              "/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:200:5)",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:196:5)",
+              "injectMetadataResources (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:177:23)",
+              "process.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:421:26)",
+              "process.emit (events.js:314:20)",
+              "process.EventEmitter.emit (domain.js:486:12)",
+              "process.emit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)"
+            ]
+          }
+        ],
+        "/quickstart/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:60:27)",
+              "/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:200:5)",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:196:5)",
+              "injectMetadataResources (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:177:23)",
+              "process.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:421:26)",
+              "process.emit (events.js:314:20)",
+              "process.EventEmitter.emit (domain.js:486:12)",
+              "process.emit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)"
+            ]
+          }
+        ]
+      }
+    },
+    "ide": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "ide.template.json",
+        "stackName": "quickstart-shi-crpm-ide"
+      },
+      "metadata": {
+        "/ide/RepoName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RepoName",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:16:31)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/EnvironmentEC2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EnvironmentEC2",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:34:16)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/EC2Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EC2Role",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:40:21)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InstanceProfile",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:47:29)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/Document": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Document",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:53:20)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/LambdaRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaRole",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:59:24)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/Function": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Function",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:68:16)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/CustomResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomResource",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:75:16)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/Cloud9EnvironmentName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Cloud9EnvironmentName",
+            "trace": [
+              "new IdeStack (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/lib/ide-stack.ts:81:5)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Module.m._compile (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1043:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1046:12)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "main (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:225:14)",
+              "Object.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:512:3)",
+              "Module._compile (internal/modules/cjs/loader.js:1076:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+              "Module.load (internal/modules/cjs/loader.js:941:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/ide/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:51:24)",
+              "/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:200:5)",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:196:5)",
+              "injectMetadataResources (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:177:23)",
+              "process.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:421:26)",
+              "process.emit (events.js:314:20)",
+              "process.EventEmitter.emit (domain.js:486:12)",
+              "process.emit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)"
+            ]
+          }
+        ],
+        "/ide/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:60:27)",
+              "/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:200:5)",
+              "visit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:196:5)",
+              "injectMetadataResources (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:177:23)",
+              "process.<anonymous> (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:421:26)",
+              "process.emit (events.js:314:20)",
+              "process.EventEmitter.emit (domain.js:486:12)",
+              "process.emit (/Users/dylanowe/gitrepos/cdk/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
