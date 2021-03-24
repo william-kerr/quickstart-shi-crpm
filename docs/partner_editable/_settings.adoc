@@ -2,10 +2,11 @@
 :partner-product-name: SHI CRPM
 :partner-product-short-name: CRPM
 :partner-company-name: SHI
-:doc-month: December
-:doc-year: 2020
+:doc-month: March
+:doc-year: 2021
 :partner-contributors: Bill Kerr, SHI
 :quickstart-contributors: Dylan Owen, AWS Quick Start team
 :deployment_time: 15 minutes
 :default_deployment_region: us-east-1
 :no_parameters:
+:cdk_qs:
