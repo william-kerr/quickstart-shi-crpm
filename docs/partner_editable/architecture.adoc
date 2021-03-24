@@ -10,14 +10,15 @@ image::../images/architecture_diagram.jpg[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* AWS CodeCommit hosting a repository
-* AWS CodeBuild to test commits pushed to the repository
-* AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
+* An infrastructure pipeline comprised of:
+** AWS CodeCommit hosting a repository.
+** AWS CodeBuild to test commits pushed to the repository.
+** AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
 * An EventBridge rule for triggering AWS CodeBuild projects.
-* IAM Roles
+* IAM Roles.
 * An AWS Cloud9 IDE containing the infrastructure code and {partner-product-short-name} installed.
-* Custom Lambda resources
-* S3 bucket for code artifacts
+* Custom Lambda resources for cloning content to an S3 bucket for code artifacts.
+* S3 bucket for code artifacts.
 
 [#architecture2]
 .Process workflow for _{partner-product-short-name}_ Quick Start deployment
