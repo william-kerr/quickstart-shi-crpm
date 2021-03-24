@@ -1,13 +1,12 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-The Quick Start demonstrates how to create CI/CD infrastructure that watches itself for changes, with the integration of Cloud Resource Property Manager (CRPM).
+The Quick Start creates CI/CD infrastructure that watches itself for changes, with the integration of {partner-product-name} ({partner-product-short-name}).
 When changes are made to the properties that define the pipeline, the pipeline is updated.
 The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment for
 ease of use.  AWS CDK code is used in conjunction with {partner-product-short-name} property files.
 
-Managing cloud resources ultimately boils down to managing properties. https://shi.github.io/crpm[CRPM^]
-helps organize all of those properties by importing YAML files,
-which are stitched together with AWS CDK.  It keeps all of what's good about YAML in YAML, and puts all of the
-logic into structured CDK code.  By focusing on keeping properties well organized, you can build
-complex infrastructure while keeping technical debt to a minimum.
+When you manage cloud resources, you manage the properties of the resources. https://shi.github.io/crpm[CRPM^]
+helps organize all of those properties by importing YAML files, which are stitched together with AWS CDK.  
+It keeps all of what's good about YAML in YAML, and puts all of the logic into structured CDK code. 
+By focusing on keeping properties organized, it is possible to build complex infrastructure while keeping technical debt to a minimum.

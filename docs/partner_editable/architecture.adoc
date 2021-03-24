@@ -10,14 +10,15 @@ image::../images/architecture_diagram.jpg[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* AWS CodeCommit hosting a repository
-* AWS CodeBuild to test commits pushed to the repository
-* AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
+* An infrastructure pipeline comprised of:
+** AWS CodeCommit hosting a repository.
+** AWS CodeBuild to test commits pushed to the repository.
+** AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
 * An EventBridge rule for triggering AWS CodeBuild projects.
-* IAM Roles
+* IAM Roles.
 * An AWS Cloud9 IDE containing the infrastructure code and {partner-product-short-name} installed.
-* Custom Lambda resources
-* S3 bucket for code artifacts
+* Custom Lambda resources for cloning content to an S3 bucket for code artifacts.
+* S3 bucket for code artifacts.
 
 [#architecture2]
 .Process workflow for _{partner-product-short-name}_ Quick Start deployment
@@ -29,11 +30,11 @@ Quick Start source code into an S3 bucket.  That source code is used to initiali
 AWS CodeCommit repository at time of creation.
 
 As a second prerequisite, AWS CloudFormation creates an AWS Cloud9 environment and executes
-an automation document to install CRPM, so that it's available to use when the IDE is opened.
+an automation document to install {partner-product-short-name}, so that it's available to use when the IDE is opened.
 The AWS CodeCommit repository is also copied into the Cloud9 IDE, so that infrastructure
 code is ready to edit.
 
 When someone opens the Cloud9 IDE, edits the infrastructure code, commits the change and pushes it,
 it triggers AWS CodePipeline to fetch the source from CodeCommit, synthesize a CloudFormation template
-from AWS CDK code, validate the template, and then create a change set.  After a human logs into
-the AWS Console and approves the change set, the change set is executed, and the infrastructure is updated.
+from AWS CDK code, validate the template, and then create a change set.  After a manual approval the change set, 
+the change set is executed, and the infrastructure is updated.
