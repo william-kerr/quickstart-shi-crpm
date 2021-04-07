@@ -1,40 +1,37 @@
-Deploying this Quick Start for an infrastructure CI/CD pipeline and IDE with
-default parameters builds the following _{partner-product-short-name}_ environment in the
+Deploying this Quick Start for an infrastructure CI/CD pipeline and integrated development environment (IDE) with default parameters builds the following {partner-product-short-name} environment in the
 AWS Cloud.
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture1]
 .Quick Start architecture for _{partner-product-short-name}_ on AWS
-[link=images/architecture_diagram.jpg]
+[link=images/CRPM-architecture-diagram.jpg]
 image::../images/architecture_diagram.png[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* An infrastructure pipeline comprised of:
-** AWS CodeCommit hosting a repository.
-** AWS CodeBuild to test commits pushed to the repository.
-** AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.
-* An EventBridge rule for triggering AWS CodeBuild projects.
-* IAM Roles.
-* An AWS Cloud9 IDE containing the infrastructure code and {partner-product-short-name} installed.
-* Custom Lambda resources for cloning content to an S3 bucket for code artifacts.
-* S3 bucket for code artifacts.
+* An infrastructure pipeline that contains:
+** AWS CodeCommit to host the repository.
+** AWS CodeBuild to test commits that are pushed to the repository.
+** AWS CodePipeline to manage the source repository, build tests, and review and deploy the repository code.
+* An Amazon EventBridge rule to trigger AWS CodeBuild projects.
+* AWS Identity and Access Management (IAM) roles for executing Lambda functions and running AWS CodeBuild and AWS CodePipeline.
+* An AWS Cloud9 IDE that contains the infrastructure code and installation of {partner-product-short-name}.
+* Amazon S3 bucket for code artifacts.
+* Custom Lambda resources for cloning content to an Amazon S3 bucket for code artifacts.
 
 [#architecture2]
-.Process workflow for _{partner-product-short-name}_ Quick Start deployment
+.Process workflow for {partner-product-short-name} Quick Start deployment
 [link=images/architecture_diagram_1.png]
 image::../images/architecture_diagram_1.png[Architecture,width=648,height=439]
 
-As a first prerequisite, AWS CloudFormation provisions a Lambda function that copies the
-Quick Start source code into an S3 bucket.  That source code is used to initialize the
-AWS CodeCommit repository at time of creation.
+First, AWS CloudFormation provisions a Lambda function that copies the
+Quick Start source code into an S3 bucket. The source code initializes the
+AWS CodeCommit repository when it's created.
 
-As a second prerequisite, AWS CloudFormation creates an AWS Cloud9 environment and executes
-an automation document to install {partner-product-short-name}, so that it's available to use when the IDE is opened.
-The AWS CodeCommit repository is also copied into the Cloud9 IDE, so that infrastructure
-code is ready to edit.
+Next, AWS CloudFormation creates an AWS Cloud9 environment and runs
+an Automation document to install {partner-product-short-name}. Now {partner-product-short-name} is available to use when the IDE is opened.
+The AWS CodeCommit repository is also copied into the AWS Cloud9 IDE for editing the infrastructure code.
 
-When someone opens the Cloud9 IDE, edits the infrastructure code, commits the change and pushes it,
-it triggers AWS CodePipeline to fetch the source from CodeCommit, synthesize a CloudFormation template
-from AWS CDK code, validate the template, and then create a change set.  After a manual approval the change set, 
-the change set is executed, and the infrastructure is updated.
+In the AWS Cloud9 IDE, after editing the infrastructure code and then commiting and pushing the updates,
+AWS CodePipeline fetches the source from AWS CodeCommit, synthesizes a CloudFormation template
+from AWS CDK code, validates the template, and then creates a change set. After a manual approval, the change set runs, and the infrastructure is updated.
