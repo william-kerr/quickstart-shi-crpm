@@ -4,8 +4,8 @@
 
 *Q.* The AWS CodePipeline pipeline failed at the *Deploy* stage after I approved it.
 
-*A.* When the CI/CD pipeline is created, it will automatically run for the first time even though nothing has changed.  After approving it, sometimes it shows as failed even though nothing failed.  This can also happen after changing a property to the AWS CodePipeline pipeline resource.  If everything looks as expected after the pipeline finishes running, you can ignore the failure notice.
+*A.* When the CI/CD pipeline is created, it automatically runs for the first time even though nothing has changed. After approving it, sometimes it shows as failed even though nothing failed. This can also happen after changing a property to the AWS CodePipeline pipeline resource. If everything looks as expected after the pipeline finishes running, you can ignore the failure notice.
 
 == Troubleshooting
 
-Please check the *Events* tab on the CloudFormation stacks created by this Quick Start for error explanations.  Also, click the *Details* link on the *Build* or *Deploy* stages of the pipeline to view failure details.  Check the AWS CodeCommit code commit diff to see what changes triggered the pipeline.
+Check the *Events* tab on the CloudFormation stacks created by this Quick Start for error explanations. Also, choose the *Details* link on the *Build* or *Deploy* stages of the pipeline to view failure details. Check the AWS CodeCommit code commit _diff_ to see what changes triggered the pipeline.
