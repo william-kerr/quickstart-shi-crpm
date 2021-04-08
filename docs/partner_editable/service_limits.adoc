@@ -3,7 +3,7 @@
 |Resource |This deployment uses
 
 // Space needed to maintain table headers
-|AWS Identity and Access Management (IAM) security groups |1
+|IAM security groups |1
 |IAM roles |6
 |t3.small instances |1
 |===

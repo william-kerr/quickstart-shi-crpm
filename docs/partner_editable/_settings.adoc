@@ -2,7 +2,7 @@
 :partner-product-name: Cloud Resource Property Manager
 :partner-product-short-name: CRPM
 :partner-company-name: SHI
-:doc-month: March
+:doc-month: April
 :doc-year: 2021
 :partner-contributors: Bill Kerr, SHI
 :quickstart-contributors: Dylan Owen, AWS Quick Start team
