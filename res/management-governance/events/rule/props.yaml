@@ -1,7 +1,7 @@
 # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html#cfn-events-rule-description
 # Type: string
 # Optional
-description: 'Triggers a pipeline to update the current infrastructure to match the current master branch.'
+description: 'Triggers a pipeline to update the current infrastructure to match the current main branch.'
 
 # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html#cfn-events-rule-eventbusname
 # Type: string
@@ -21,7 +21,7 @@ eventPattern:
     referenceType:
       - 'branch'
     referenceName:
-      - 'master'
+      - 'main'
 
 # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html#cfn-events-rule-name
 # Type: string

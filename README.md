@@ -1,12 +1,12 @@
 # AWS Quick Start
 
-NOTE: THIS DOCUMENTATION CAN BE DELETED WHEN THE QUICK START GOES LIVE
+TODO: THIS DOCUMENTATION CAN BE DELETED WHEN THE QUICK START GOES LIVE
 
 Create a CI/CD pipeline that watches itself for changes, and an IDE that can be used to edit the pipeline infrastructure code.
 
 ## Infrastructure Diagram
 
-![Infrastructure Diagram](https://raw.githubusercontent.com/shi/quickstart-shi-crpm/master/img/diagram.png)
+![Infrastructure Diagram](https://github.com/aws-quickstart/quickstart-shi-crpm/blob/main/docs/images/architecture_diagram_1.png?raw=true)
 
 ## Getting Started
 
@@ -48,15 +48,15 @@ cdk deploy quickstart --parameters IdeStackTemplateURL=https://s3.amazonaws.com/
 2.  In the [AWS Console](https://aws.amazon.com/console), open the newly created [AWS Cloud9](https://aws.amazon.com/cloud9) environment.
 3.  Then, try changing some property value in any *props.yaml* file in one of the nested directories in *quick-start/res/*. For example, you could change the build server type from **BUILD_GENERAL1_SMALL** to **BUILD_GENERAL1_MEDIUM** as seen in the screenshot below. [You can learn more about **crpm** and properties files here](https://shi.github.io/crpm).
     
-    ![Screenshot](https://raw.githubusercontent.com/shi/quickstart-shi-crpm/master/img/screenshot1.png)
+    ![Screenshot](https://github.com/aws-quickstart/quickstart-shi-crpm/blob/main/docs/images/screenshot1.png?raw=true)
 4.  On the command line, commit the change and push it to AWS CodeCommit to kick off the AWS CodePipeline as seen in the screenshot below.
     
-    ![Screenshot](https://raw.githubusercontent.com/shi/quickstart-shi-crpm/master/img/screenshot2.png)
+    ![Screenshot](https://github.com/aws-quickstart/quickstart-shi-crpm/blob/main/docs/images/screenshot2.png?raw=true)
 5.  In the [AWS Console](https://aws.amazon.com/console), open the [AWS CodePipeline](https://aws.amazon.com/codepipeline) that was created.  Then, scroll down to the **Review** stage, click the **Review** button, enter a message, and click the **Approve** button as seen in the screenshot below.
     
     *Note: The first time the quick start is launched, the pipeline will run automatically.  You can approve it and let it continue completing, as it will not update anything.*
     
-    ![Screenshot](https://raw.githubusercontent.com/shi/quickstart-shi-crpm/master/img/screenshot3.png)
+    ![Screenshot](https://github.com/aws-quickstart/quickstart-shi-crpm/blob/main/docs/images/screenshot3.png?raw=true)
 6.  After the **Deploy** stage has finished, navigate in the console to the resource whose property you changed, and verify that it has changed.
 
 ## Destroy Stacks

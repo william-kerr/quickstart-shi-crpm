@@ -150,17 +150,17 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ZipFile": "import boto3, json, shutil, urllib3, zipfile\n\nhttp = urllib3.PoolManager()\n\nGITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'\nGITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'\n\ndef lambda_handler(event, context):\n    print('Event:', event['RequestType'])\n    \n    artifact_bucket_name = event['ResourceProperties']['ArtifactBucketName']\n    print('Artifact Bucket Name:', artifact_bucket_name)\n    \n    empty_bucket_on_delete = event['ResourceProperties']['EmptyBucketOnDelete']\n    print('Empty Bucket On Delete:', empty_bucket_on_delete)\n    \n    if (event['RequestType'] == 'Create'):\n        try:\n            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/master'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:\n                shutil.copyfileobj(res, out_file)\n            \n            with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:\n                zf.extractall('/tmp')\n            \n            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-master'.format(GITHUB_REPOSITORY_NAME))\n            \n            s3 = boto3.client('s3')\n            with open('/tmp/source2.zip', 'rb') as f:\n                s3.upload_fileobj(f, artifact_bucket_name, 'quick-start/Source/{}.zip'.format(GITHUB_REPOSITORY_NAME))\n            \n            print('Copied quick start source from GitHub to S3')\n            return send(event, context, 'SUCCESS')\n        except:\n            return send(event, context, 'FAILED', 'Could not copy quick start source from GitHub to S3')\n    elif (event['RequestType'] == 'Delete' and empty_bucket_on_delete):\n        try:\n            client = boto3.client('s3')\n            paginator = client.get_paginator('list_object_versions')\n            response_iterator = paginator.paginate(Bucket=artifact_bucket_name)\n            for response in response_iterator:\n                versions = response.get('Versions', [])\n                versions.extend(response.get('DeleteMarkers', []))\n                for key, version_id in [[v['Key'], v['VersionId']] for v in versions]:\n                    client.delete_object(Bucket=artifact_bucket_name, Key=key, VersionId=version_id)\n        except:\n            return send(event, context, 'FAILED', 'Could not empty bucket')\n    \n    send(event, context, 'SUCCESS')\n\ndef send(event, context, status, data=''):\n    body = {\n        'Status': status,\n        'Reason': 'See the details in CloudWatch Log Stream: ' + context.log_stream_name,\n        'PhysicalResourceId': context.log_stream_name,\n        'StackId': event['StackId'],\n        'RequestId': event['RequestId'],\n        'LogicalResourceId': event['LogicalResourceId'],\n        'NoEcho': False,\n        'Data': {'Data': data}\n    }\n    \n    json_body = json.dumps(body)\n    \n    headers = {\n        'content-type': '',\n        'content-length': str(len(json_body))\n    }\n    \n    http.request('PUT', event['ResponseURL'], body=json_body, headers=headers)\n"
+          "ZipFile": "import boto3, json, shutil, urllib3, zipfile\n\nhttp = urllib3.PoolManager()\n\n# TODO: CHANGE GITHUB_ACCOUNT_NAME TO 'aws-quickstart' FROM 'shi' WHEN THE QUICK START GOES LIVE\nGITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'\nGITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'\n\ndef lambda_handler(event, context):\n    print('Event:', event['RequestType'])\n    \n    artifact_bucket_name = event['ResourceProperties']['ArtifactBucketName']\n    print('Artifact Bucket Name:', artifact_bucket_name)\n    \n    empty_bucket_on_delete = event['ResourceProperties']['EmptyBucketOnDelete']\n    print('Empty Bucket On Delete:', empty_bucket_on_delete)\n    \n    if (event['RequestType'] == 'Create'):\n        try:\n            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/main'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:\n                shutil.copyfileobj(res, out_file)\n            \n            with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:\n                zf.extractall('/tmp')\n            \n            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-main'.format(GITHUB_REPOSITORY_NAME))\n            \n            s3 = boto3.client('s3')\n            with open('/tmp/source2.zip', 'rb') as f:\n                s3.upload_fileobj(f, artifact_bucket_name, 'quick-start/Source/{}.zip'.format(GITHUB_REPOSITORY_NAME))\n            \n            print('Copied quick start source from GitHub to S3')\n            return send(event, context, 'SUCCESS')\n        except:\n            return send(event, context, 'FAILED', 'Could not copy quick start source from GitHub to S3')\n    elif (event['RequestType'] == 'Delete' and empty_bucket_on_delete):\n        try:\n            client = boto3.client('s3')\n            paginator = client.get_paginator('list_object_versions')\n            response_iterator = paginator.paginate(Bucket=artifact_bucket_name)\n            for response in response_iterator:\n                versions = response.get('Versions', [])\n                versions.extend(response.get('DeleteMarkers', []))\n                for key, version_id in [[v['Key'], v['VersionId']] for v in versions]:\n                    client.delete_object(Bucket=artifact_bucket_name, Key=key, VersionId=version_id)\n        except:\n            return send(event, context, 'FAILED', 'Could not empty bucket')\n    \n    send(event, context, 'SUCCESS')\n\ndef send(event, context, status, data=''):\n    body = {\n        'Status': status,\n        'Reason': 'See the details in CloudWatch Log Stream: ' + context.log_stream_name,\n        'PhysicalResourceId': context.log_stream_name,\n        'StackId': event['StackId'],\n        'RequestId': event['RequestId'],\n        'LogicalResourceId': event['LogicalResourceId'],\n        'NoEcho': False,\n        'Data': {'Data': data}\n    }\n    \n    json_body = json.dumps(body)\n    \n    headers = {\n        'content-type': '',\n        'content-length': str(len(json_body))\n    }\n    \n    http.request('PUT', event['ResponseURL'], body=json_body, headers=headers)\n"
         },
-        "Handler": "index.lambda_handler",
         "Role": {
           "Fn::GetAtt": [
             "LambdaRole",
             "Arn"
           ]
         },
-        "Runtime": "python3.6",
         "Description": "Clones the Quick Start source code and saves it in an S3 artifact bucket on creation, and empties the bucket on deletion",
+        "Handler": "index.lambda_handler",
+        "Runtime": "python3.6",
         "Timeout": 300
       },
       "Metadata": {
@@ -365,7 +365,7 @@
                   "Version": "1"
                 },
                 "Configuration": {
-                  "BranchName": "master",
+                  "BranchName": "main",
                   "PollForSourceChanges": "false",
                   "RepositoryName": {
                     "Fn::GetAtt": [
@@ -570,7 +570,7 @@
     "Rule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
-        "Description": "Triggers a pipeline to update the current infrastructure to match the current master branch.",
+        "Description": "Triggers a pipeline to update the current infrastructure to match the current main branch.",
         "EventPattern": {
           "source": [
             "aws.codecommit"
@@ -583,7 +583,7 @@
               "branch"
             ],
             "referenceName": [
-              "master"
+              "main"
             ]
           },
           "resources": [
@@ -652,7 +652,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Modules": "aws-cdk=1.85.0,@aws-cdk/assets=1.67.0,@aws-cdk/aws-applicationautoscaling=1.67.0,@aws-cdk/aws-autoscaling-common=1.67.0,@aws-cdk/aws-cloud9=1.67.0,@aws-cdk/aws-cloudformation=1.67.0,@aws-cdk/aws-cloudwatch=1.67.0,@aws-cdk/aws-codebuild=1.67.0,@aws-cdk/aws-codecommit=1.67.0,@aws-cdk/aws-codeguruprofiler=1.67.0,@aws-cdk/aws-codepipeline=1.67.0,@aws-cdk/aws-ec2=1.67.0,@aws-cdk/aws-ecr=1.67.0,@aws-cdk/aws-ecr-assets=1.67.0,@aws-cdk/aws-events=1.67.0,@aws-cdk/aws-iam=1.67.0,@aws-cdk/aws-kms=1.67.0,@aws-cdk/aws-lambda=1.67.0,@aws-cdk/aws-logs=1.67.0,@aws-cdk/aws-s3=1.67.0,@aws-cdk/aws-s3-assets=1.67.0,@aws-cdk/aws-sqs=1.67.0,@aws-cdk/aws-ssm=1.67.0,@aws-cdk/cloud-assembly-schema=1.67.0,@aws-cdk/core=1.67.0,@aws-cdk/custom-resources=1.67.0,@aws-cdk/cx-api=1.67.0,@aws-cdk/region-info=1.67.0,jsii-runtime=node.js/v14.11.0"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAA02QTW4DMQiFz9K94/wtqu6qRuo2UXoCBxOJGduMbEgVjebuHdwuuuLxAQ/E3r+9+t3Le/huG4jjdgau6OcvCTC6071cQg0ZBaslZ5VJxZ24NKkKYuyKjbUCml4LkYS4LM78ZgrZWwsndO1o8kNhRHEp5FsMBj61gE04SKzxzjUHS/1sdtqE8/8F/azFAUcEzpmk2+PEjYTrsxduSikav1QecD3S4EQTJirY+Z92+MAirVtowmVxZe30Q9s+9jt/OKxvGRrRpmoRyuivv/EHQSg+5TIBAAA="
       },
       "Metadata": {
         "aws:cdk:path": "quickstart/CDKMetadata/Default"
@@ -680,6 +680,14 @@
       "Fn::Or": [
         {
           "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "af-south-1"
+              ]
+            },
             {
               "Fn::Equals": [
                 {
@@ -751,14 +759,6 @@
                 },
                 "cn-northwest-1"
               ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-central-1"
-              ]
             }
           ]
         },
@@ -769,7 +769,23 @@
                 {
                   "Ref": "AWS::Region"
                 },
+                "eu-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
                 "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-south-1"
               ]
             },
             {
@@ -827,7 +843,11 @@
                 },
                 "us-east-2"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
             {
               "Fn::Equals": [
                 {

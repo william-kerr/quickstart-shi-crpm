@@ -42,7 +42,7 @@ stages:
         # Optional
         configuration:
 #          RepositoryName: ''
-          BranchName: 'master'
+          BranchName: 'main'
           PollForSourceChanges: 'false'
 
         # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-inputartifacts

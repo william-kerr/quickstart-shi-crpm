@@ -49,7 +49,7 @@ export class IdeStack extends cdk.Stack {
     // Systems Manager document
     const ssmDocDir = `${__dirname}/../res/management-governance/ssm/document-configure-cloud9`;
     const ssmDocProps = crpm.load<ssm.CfnDocumentProps>(`${ssmDocDir}/props.yaml`);
-    ssmDocProps.content = yaml.safeLoad(fs.readFileSync(`${ssmDocDir}/content.yaml`, 'utf8'));
+    ssmDocProps.content = yaml.load(fs.readFileSync(`${ssmDocDir}/content.yaml`, 'utf8'));
     const ssmDoc = new ssm.CfnDocument(this, 'Document', ssmDocProps);
     
     // Lambda role
