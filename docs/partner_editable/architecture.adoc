@@ -13,11 +13,11 @@ As shown in Figure 1, the Quick Start sets up the following:
 ** AWS CodeCommit to host the repository.
 ** AWS CodeBuild to test commits that are pushed to the repository.
 ** AWS CodePipeline to manage the source repository, build tests, and review and deploy the repository code.
-* An Amazon EventBridge rule to trigger AWS CodeBuild projects.
+* An Amazon EventBridge rule to invoke AWS CodeBuild projects.
 * An AWS Cloud9 IDE that contains the infrastructure code and installation of {partner-product-short-name}.
 * Custom Lambda functions for cloning content to an Amazon S3 bucket.
 * Amazon S3 bucket for code artifacts.
-* AWS Identity and Access Management (IAM) roles for executing Lambda functions and running AWS CodeBuild and AWS CodePipeline.
+* AWS Identity and Access Management (IAM) roles for running Lambda functions and running AWS CodeBuild and AWS CodePipeline.
 
 [#architecture2]
 .Process workflow for {partner-product-short-name} Quick Start deployment
@@ -29,9 +29,9 @@ Quick Start source code into an S3 bucket. The source code initializes the
 AWS CodeCommit repository when it's created.
 
 Next, AWS CloudFormation creates an AWS Cloud9 environment and runs
-an Automation document to install {partner-product-short-name}. Now {partner-product-short-name} is available to use when the IDE is opened.
+an automation document to install {partner-product-short-name}. Now {partner-product-short-name} is available to use when the IDE is opened.
 The AWS CodeCommit repository is also copied into the AWS Cloud9 IDE for editing the infrastructure code.
 
-In the AWS Cloud9 IDE, after editing the infrastructure code and then commiting and pushing the updates,
+In the AWS Cloud9 IDE, after editing the infrastructure code and then committing and pushing the updates,
 AWS CodePipeline fetches the source from AWS CodeCommit, synthesizes a CloudFormation template
 from AWS CDK code, validates the template, and then creates a change set. After a manual approval, the change set runs, and the infrastructure is updated.
