@@ -8,4 +8,4 @@
 
 == Troubleshooting
 
-Check the *Events* tab on the CloudFormation stacks created by this Quick Start for error explanations. Also, choose the *Details* link on the *Build* or *Deploy* stages of the pipeline to view failure details. Check the AWS CodeCommit code commit _diff_ to see what changes triggered the pipeline.
+Check the *Events* tab on the CloudFormation stacks created by this Quick Start for error explanations. Also, choose the *Details* link on the *Build* or *Deploy* stages of the pipeline to view failure details. Check the AWS CodeCommit *diff* tool to see what changes triggered the pipeline.
