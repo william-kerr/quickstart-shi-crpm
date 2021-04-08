@@ -23,7 +23,7 @@ NOTE: The first time the Quick Start is launched, the pipeline runs automaticall
 [link=images/screenshot3.png]
 image::../images/screenshot3.png[Architecture,width=648,height=439]
 +
-. After the **Deploy** stage has completed, open the console and naviagte to the resource with the property that you changed, and verify the update.
+. After the **Deploy** stage has completed, open the console and navigate to the resource with the property that you changed, and verify the update.
 
 == Best practices for using {partner-product-short-name} on AWS
 
