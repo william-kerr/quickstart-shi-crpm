@@ -1,0 +1,790 @@
+{
+  "version": "9.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "quickstart": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "quickstart.template.json",
+        "stackName": "quickstart-shi-crpm-ci-cd"
+      },
+      "metadata": {
+        "/quickstart/IdeStackTemplateURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdeStackTemplateURL",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:18:45)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CloudFormationRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudFormationRole",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:30:21)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Bucket",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:37:24)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/LambdaRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaRole",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:49:20)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Function": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Function",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:60:16)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CustomResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomResource",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:67:16)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Repository": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Repository",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:77:18)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CodeBuildRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodeBuildRole",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:84:25)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Project": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Project",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:95:21)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CodePipelineRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodePipelineRole",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:101:26)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Pipeline": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Pipeline",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:121:22)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/EventsRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EventsRole",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:127:24)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Rule": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Rule",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:139:5)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/Stack": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Stack",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:147:5)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CodeCommitURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodeCommitURL",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:150:5)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CodePipelineName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CodePipelineName",
+            "trace": [
+              "new CicdStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ci-cd-stack.ts:153:5)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:8:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/quickstart/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
+              "construct (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "injectMetadataResources (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
+              "process.App.process.once (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:286:20)",
+              "process.emit (events.js:198:13)",
+              "process.EventEmitter.emit (domain.js:448:20)",
+              "process.emit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)",
+              "process.topLevelDomainCallback (domain.js:126:23)"
+            ]
+          }
+        ],
+        "/quickstart/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
+              "construct (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "injectMetadataResources (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
+              "process.App.process.once (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:286:20)",
+              "process.emit (events.js:198:13)",
+              "process.EventEmitter.emit (domain.js:448:20)",
+              "process.emit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)",
+              "process.topLevelDomainCallback (domain.js:126:23)"
+            ]
+          }
+        ]
+      }
+    },
+    "ide": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "ide.template.json",
+        "stackName": "quickstart-shi-crpm-ide"
+      },
+      "metadata": {
+        "/ide/RepoName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RepoName",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:16:31)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/EnvironmentEC2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EnvironmentEC2",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:34:16)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/EC2Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EC2Role",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:40:21)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InstanceProfile",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:47:29)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/Document": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Document",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:53:20)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/LambdaRole": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaRole",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:59:24)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/Function": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Function",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:68:16)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/CustomResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomResource",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:75:16)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/Cloud9EnvironmentName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Cloud9EnvironmentName",
+            "trace": [
+              "new IdeStack (/home/ec2-user/environment/aws/quickstart-shi-crpm/lib/ide-stack.ts:81:5)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/bin/app.ts:12:1)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Module.m._compile (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Object.require.extensions.(anonymous function) [as .ts] (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "main (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (internal/modules/cjs/loader.js:778:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)",
+              "Module.load (internal/modules/cjs/loader.js:653:32)",
+              "tryModuleLoad (internal/modules/cjs/loader.js:593:12)",
+              "Function.Module._load (internal/modules/cjs/loader.js:585:3)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:831:12)",
+              "findNodeScript.then.existing (/home/ec2-user/.nvm/versions/node/v10.22.0/lib/node_modules/npm/node_modules/libnpx/index.js:268:14)"
+            ]
+          }
+        ],
+        "/ide/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
+              "construct (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "injectMetadataResources (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
+              "process.App.process.once (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:286:20)",
+              "process.emit (events.js:198:13)",
+              "process.EventEmitter.emit (domain.js:448:20)",
+              "process.emit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)",
+              "process.topLevelDomainCallback (domain.js:126:23)"
+            ]
+          }
+        ],
+        "/ide/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
+              "construct (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
+              "visit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "injectMetadataResources (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
+              "Object.synthesize (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
+              "process.App.process.once (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "Object.onceWrapper (events.js:286:20)",
+              "process.emit (events.js:198:13)",
+              "process.EventEmitter.emit (domain.js:448:20)",
+              "process.emit (/home/ec2-user/environment/aws/quickstart-shi-crpm/node_modules/source-map-support/source-map-support.js:495:21)",
+              "process.topLevelDomainCallback (domain.js:126:23)"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

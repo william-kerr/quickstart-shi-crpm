@@ -1,18 +1,18 @@
 The following Regions are currently supported by this Quick Start.
 
-- _us-east-1 (N. Virginia)_
-- _us-east-2 (Ohio)_
-- _us-west-1 (N. California)_
-- _us-west-2 (Oregon)_
-- _ap-south-1 (Mumbai)_
-- _ap-northeast-2 (Seoul)_
-- _ap-southeast-1 (Singapore)_
-- _ap-southeast-2 (Sydney)_
-- _ap-northeast-1 (Tokyo)_
-- _ca-central-1 (Central)_
-- _eu-central-1 (Frankfurt)_
-- _eu-west-1 (Ireland)_
-- _eu-west-2 (London)_
-- _eu-west-3 (Paris)_
-- _eu-north-1 (Stockholm)_
-- _sa-east-1 (São Paulo)_
+- us-east-1 (N. Virginia)
+- us-east-2 (Ohio)
+- us-west-1 (N. California)
+- us-west-2 (Oregon)
+- ap-south-1 (Mumbai)
+- ap-northeast-2 (Seoul)
+- ap-southeast-1 (Singapore)
+- ap-southeast-2 (Sydney)
+- ap-northeast-1 (Tokyo)
+- ca-central-1 (Central)
+- eu-central-1 (Frankfurt)
+- eu-west-1 (Ireland)
+- eu-west-2 (London)
+- eu-west-3 (Paris)
+- eu-north-1 (Stockholm)
+- sa-east-1 (São Paulo)

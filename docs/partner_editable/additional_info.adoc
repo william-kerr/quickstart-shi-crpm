@@ -3,27 +3,28 @@
 
 == Test the deployment
 
-.  Wait for the Quick Start CloudFormation stack to finish being created.
-.  In the https://aws.amazon.com/console[AWS Console^], open the newly created https://aws.amazon.com/cloud9[AWS Cloud9^] environment.
-.  Then, try changing some property value in any *props.yaml* file in one of the nested directories in *quick-start/res/*. For example, you could change the build server type from **BUILD_GENERAL1_SMALL** to **BUILD_GENERAL1_MEDIUM** as seen in the screenshot below. You can learn more about **{partner-product-short-name}** and property files https://shi.github.io/crpm[here^].
+After the Quick Start CloudFormation stack is created, do these steps:
+
+.  In the https://aws.amazon.com/console[AWS Management Console^], open the newly created https://aws.amazon.com/cloud9[AWS Cloud9^] environment.
+.  Change a property value in the *props.yaml* file in any one of the nested directories in the *quick-start/res/* directory. For example, you can change the build server type from **BUILD_GENERAL1_SMALL** to **BUILD_GENERAL1_MEDIUM**, as seen in the following image. To learn more about {partner-product-short-name} and property files, see https://shi.github.io/crpm[AWS CloudFormation, piece by piece^]. 
 + 
 [link=images/screenshot1.png]
 image::../images/screenshot1.png[Architecture,width=648,height=439]
 +
-. On the command line, commit the change and push it to AWS CodeCommit to kick off AWS CodePipeline as seen in the screenshot below.
+. On the command line, commit the change and push it to AWS CodeCommit to kick off AWS CodePipeline, as seen in the following image.
 +
 [link=images/screenshot2.png]
 image::../images/screenshot2.png[Architecture,width=648,height=439]
 +
-. In the https://aws.amazon.com/console[AWS Console^], open the https://aws.amazon.com/codepipeline[AWS CodePipeline^] that was created.  Then, scroll down to the **Review** stage, click the **Review** button, enter a message, and click the **Approve** button as seen in the screenshot below.
+. In the AWS Management Console, open the https://aws.amazon.com/codepipeline[AWS CodePipeline^] that was created. Then, scroll down to the **Review** stage, choose the **Review** button, enter a message, and choose the **Approve** button, as seen in the following image.
 +
-NOTE: The first time the Quick Start is launched, the pipeline will run automatically.  You can approve it and let it continue completing, as it will not update anything.
+NOTE: The first time the Quick Start is launched, the pipeline runs automatically. You can approve it and let it continue completing, as it will not update anything.
 +
 [link=images/screenshot3.png]
 image::../images/screenshot3.png[Architecture,width=648,height=439]
 +
-. After the **Deploy** stage has finished, navigate in the console to the resource whose property you changed, and verify that it has changed.
+. After the **Deploy** stage has completed, open the console and navigate to the resource with the property that you changed, and verify the update.
 
 == Best practices for using {partner-product-short-name} on AWS
 
-You can learn more about importing property files into AWS CDK applications with https://shi.github.io/crpm[{partner-product-short-name}^].
+Learn more about importing property files into AWS CDK applications with https://shi.github.io/crpm[{partner-product-short-name}^].

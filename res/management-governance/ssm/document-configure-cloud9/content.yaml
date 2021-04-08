@@ -1,0 +1,9 @@
+schemaVersion: '2.2'
+description: Configure Cloud9 Amazon Linux EC2 instance
+mainSteps:
+  - action: 'aws:runShellScript'
+    name: InstallCRPM
+    inputs:
+      runCommand:
+        - runuser -l ec2-user -c 'npm install -g crpm typescript'
+      timeoutSeconds: 3600

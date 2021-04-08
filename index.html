@@ -803,6 +803,7 @@ p.footer-text a{color:#d7d8d8}
 </li>
 <li><a href="#_deployment_steps">Deployment steps</a>
 <ul class="sectlevel2">
+<li><a href="#_sign_in_to_your_aws_account">Sign in to your AWS account</a></li>
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
 </ul>
 </li>
@@ -828,7 +829,7 @@ p.footer-text a{color:#d7d8d8}
 </div>
 </div>
 <div class="paragraph text-center">
-<p><strong>March 2021</strong><br>
+<p><strong>April 2021</strong><br>
 <em>Bill Kerr, SHI</em><br>
 <em>Dylan Owen, AWS Quick Start team</em></p>
 </div>
@@ -854,11 +855,10 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying infrastructure with CRPM on the AWS Cloud.</p>
+<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying infrastructure with Cloud Resource Property Manager (CRPM) on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>It is a demonstration for users who would like to create cloud infrastructure solutions that are broken down into YAML property files, which are stitched together with AWS CDK code.
-With this approach, YAML files are used for property assignment and TypeScript files are used for storing logic.</p>
+<p>The Quick Start demonstrates how you can create a cloud infrastructure with .yaml property files that are stitched together with AWS Cloud Development Kit (AWS CDK) code. With this approach, .yaml files are used for property assignment, and TypeScript files are used for storing logic.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -878,16 +878,11 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_cloud_resource_property_manager_on_aws">Cloud Resource Property Manager on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Quick Start creates CI/CD infrastructure that watches itself for changes, with the integration of Cloud Resource Property Manager (CRPM).
-When changes are made to the properties that define the pipeline, the pipeline is updated.
-The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment for
-ease of use.  AWS CDK code is used in conjunction with CRPM property files.</p>
+<p>Managing cloud resources includes managing the properties of the resources. <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a> helps organize the properties by importing .yaml files, which are stitched together with AWS CDK.
+CRPM keeps properties that are ideal for YAML in .yaml files, and puts all the logic into structured AWS CDK code. By keeping the properties organized, you can build a complex infrastructure while keeping technical debt to a minimum.</p>
 </div>
 <div class="paragraph">
-<p>When you manage cloud resources, you manage the properties of the resources. <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a>
-helps organize all of those properties by importing YAML files, which are stitched together with AWS CDK.
-It keeps all of what&#8217;s good about YAML in YAML, and puts all of the logic into structured CDK code.
-By focusing on keeping properties organized, it is possible to build complex infrastructure while keeping technical debt to a minimum.</p>
+<p>The Quick Start creates a CI/CD infrastructure that is integrated with CRPM. The architecture is designed to watch itself for changes. When changes are made to the properties that define the pipeline, the pipeline is updated. The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment. AWS CDK code is used with CRPM property files.</p>
 </div>
 </div>
 </div>
@@ -922,7 +917,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are no licensing requirements for this Quick Start.</p>
+<p>No licenses are required for this Quick Start.</p>
 </div>
 </div>
 </div>
@@ -930,15 +925,14 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Deploying this Quick Start for an infrastructure CI/CD pipeline and IDE with
-default parameters builds the following <em>CRPM</em> environment in the
+<p>Deploying this Quick Start for an infrastructure CI/CD pipeline and integrated development environment (IDE) with default parameters builds the following CRPM environment in the
 AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
-<a class="image" href="images/architecture_diagram.jpg"><img src="images/architecture_diagram.jpg" alt="Architecture" width="648" height="439"></a>
+<a class="image" href="images/CRPM-architecture-diagram.jpg"><img src="images/CRPM-architecture-diagram.png" alt="Architecture" width="648" height="439"></a>
 </div>
-<div class="title">Figure 1. Quick Start architecture for <em>CRPM</em> on AWS</div>
+<div class="title">Figure 1. Quick Start architecture for CRPM on AWS</div>
 </div>
 <div class="paragraph">
 <p>As shown in Figure 1, the Quick Start sets up the following:</p>
@@ -946,35 +940,35 @@ AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>An infrastructure pipeline comprised of:</p>
+<p>An infrastructure pipeline that contains:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>AWS CodeCommit hosting a repository.</p>
+<p>AWS CodeCommit to host the repository.</p>
 </li>
 <li>
-<p>AWS CodeBuild to test commits pushed to the repository.</p>
+<p>AWS CodeBuild to test commits that are pushed to the repository.</p>
 </li>
 <li>
-<p>AWS CodePipeline for management of the source repository, build tests, manual review and deployment of the repository code.</p>
+<p>AWS CodePipeline to manage the source repository, build tests, and review and deploy the repository code.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>An EventBridge rule for triggering AWS CodeBuild projects.</p>
+<p>An Amazon EventBridge rule to invoke AWS CodeBuild projects.</p>
 </li>
 <li>
-<p>IAM Roles.</p>
+<p>An AWS Cloud9 IDE that contains the infrastructure code and installation of CRPM.</p>
 </li>
 <li>
-<p>An AWS Cloud9 IDE containing the infrastructure code and CRPM installed.</p>
+<p>Custom Lambda functions for cloning content to an Amazon S3 bucket.</p>
 </li>
 <li>
-<p>Custom Lambda resources for cloning content to an S3 bucket for code artifacts.</p>
+<p>Amazon S3 bucket for code artifacts.</p>
 </li>
 <li>
-<p>S3 bucket for code artifacts.</p>
+<p>AWS Identity and Access Management (IAM) roles for running Lambda functions and running AWS CodeBuild and AWS CodePipeline.</p>
 </li>
 </ul>
 </div>
@@ -982,24 +976,22 @@ AWS Cloud.</p>
 <div class="content">
 <a class="image" href="images/architecture_diagram_1.png"><img src="images/architecture_diagram_1.png" alt="Architecture" width="648" height="439"></a>
 </div>
-<div class="title">Figure 2. Process workflow for <em>CRPM</em> Quick Start deployment</div>
+<div class="title">Figure 2. Process workflow for CRPM Quick Start deployment</div>
 </div>
 <div class="paragraph">
-<p>As a first prerequisite, AWS CloudFormation provisions a Lambda function that copies the
-Quick Start source code into an S3 bucket.  That source code is used to initialize the
-AWS CodeCommit repository at time of creation.</p>
+<p>First, AWS CloudFormation provisions a Lambda function that copies the
+Quick Start source code into an S3 bucket. The source code initializes the
+AWS CodeCommit repository when it&#8217;s created.</p>
 </div>
 <div class="paragraph">
-<p>As a second prerequisite, AWS CloudFormation creates an AWS Cloud9 environment and executes
-an automation document to install CRPM, so that it&#8217;s available to use when the IDE is opened.
-The AWS CodeCommit repository is also copied into the Cloud9 IDE, so that infrastructure
-code is ready to edit.</p>
+<p>Next, AWS CloudFormation creates an AWS Cloud9 environment and runs
+an automation document to install CRPM. Now CRPM is available to use when the IDE is opened.
+The AWS CodeCommit repository is also copied into the AWS Cloud9 IDE for editing the infrastructure code.</p>
 </div>
 <div class="paragraph">
-<p>When someone opens the Cloud9 IDE, edits the infrastructure code, commits the change and pushes it,
-it triggers AWS CodePipeline to fetch the source from CodeCommit, synthesize a CloudFormation template
-from AWS CDK code, validate the template, and then create a change set.  After a manual approval the change set,
-the change set is executed, and the infrastructure is updated.</p>
+<p>In the AWS Cloud9 IDE, after editing the infrastructure code and then committing and pushing the updates,
+AWS CodePipeline fetches the source from AWS CodeCommit, synthesizes a CloudFormation template
+from AWS CDK code, validates the template, and then creates a change set. After a manual approval, the change set runs, and the infrastructure is updated.</p>
 </div>
 </div>
 </div>
@@ -1015,7 +1007,7 @@ and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AW
 deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with AWS CDK, AWS Developer Tools, and CRPM.</p>
+<p>This Quick Start assumes familiarity with AWS Cloud Development Kit (AWS CDK), AWS Developer Tools, and CRPM.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1050,7 +1042,7 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Identity and Access Management (IAM) security groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IAM security groups</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
@@ -1072,52 +1064,52 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>us-east-1 (N. Virginia)</em></p>
+<p>us-east-1 (N. Virginia)</p>
 </li>
 <li>
-<p><em>us-east-2 (Ohio)</em></p>
+<p>us-east-2 (Ohio)</p>
 </li>
 <li>
-<p><em>us-west-1 (N. California)</em></p>
+<p>us-west-1 (N. California)</p>
 </li>
 <li>
-<p><em>us-west-2 (Oregon)</em></p>
+<p>us-west-2 (Oregon)</p>
 </li>
 <li>
-<p><em>ap-south-1 (Mumbai)</em></p>
+<p>ap-south-1 (Mumbai)</p>
 </li>
 <li>
-<p><em>ap-northeast-2 (Seoul)</em></p>
+<p>ap-northeast-2 (Seoul)</p>
 </li>
 <li>
-<p><em>ap-southeast-1 (Singapore)</em></p>
+<p>ap-southeast-1 (Singapore)</p>
 </li>
 <li>
-<p><em>ap-southeast-2 (Sydney)</em></p>
+<p>ap-southeast-2 (Sydney)</p>
 </li>
 <li>
-<p><em>ap-northeast-1 (Tokyo)</em></p>
+<p>ap-northeast-1 (Tokyo)</p>
 </li>
 <li>
-<p><em>ca-central-1 (Central)</em></p>
+<p>ca-central-1 (Central)</p>
 </li>
 <li>
-<p><em>eu-central-1 (Frankfurt)</em></p>
+<p>eu-central-1 (Frankfurt)</p>
 </li>
 <li>
-<p><em>eu-west-1 (Ireland)</em></p>
+<p>eu-west-1 (Ireland)</p>
 </li>
 <li>
-<p><em>eu-west-2 (London)</em></p>
+<p>eu-west-2 (London)</p>
 </li>
 <li>
-<p><em>eu-west-3 (Paris)</em></p>
+<p>eu-west-3 (Paris)</p>
 </li>
 <li>
-<p><em>eu-north-1 (Stockholm)</em></p>
+<p>eu-north-1 (Stockholm)</p>
 </li>
 <li>
-<p><em>sa-east-1 (São Paulo)</em></p>
+<p>sa-east-1 (São Paulo)</p>
 </li>
 </ul>
 </div>
@@ -1143,13 +1135,13 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 <div class="sect3">
 <h4 id="_prepare_your_aws_account">Prepare your AWS account</h4>
 <div class="paragraph">
-<p>The Quick Start will deploy a Cloud9 EC2 instance into an existing default subnet in an existing default VPC.  The default VPC should have internet access for the Cloud9 IDE to be able to download and install the CRPM software.</p>
+<p>The Quick Start deploys an AWS Cloud9 Amazon Elastic Compute Cloud (Amazon EC2) instance into an existing default subnet in an existing default VPC. The default VPC must have internet access for the AWS Cloud9 IDE to download and install the CRPM software.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_prepare_for_the_cdk_deployment">Prepare for the CDK deployment</h4>
+<h4 id="_prepare_for_the_aws_cdk_deployment">Prepare for the AWS CDK deployment</h4>
 <div class="paragraph">
-<p>To deploy this stack, you must have the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html" target="_blank" rel="noopener">AWS CLI configured</a>, and TypeScript and CDK installed.</p>
+<p>To deploy this stack, configure the AWS Command Line Interface (AWS CLI) and install the TypeScript and AWS CDK. For more information about the AWS CLI, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html" target="_blank" rel="noopener">Configuring the AWS CLI</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1171,6 +1163,19 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 <div class="sect1">
 <h2 id="_deployment_steps">Deployment steps</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_sign_in_to_your_aws_account">Sign in to your AWS account</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign in to your AWS account at <a href="https://aws.amazon.com" class="bare">https://aws.amazon.com</a> with an IAM user role that has the necessary permissions. For details, see <a href="#_planning_the_deployment">Planning the deployment</a> earlier in this guide.</p>
+</li>
+<li>
+<p>Make sure that your AWS account is configured correctly, as discussed in the <a href="#_technical_requirements">Technical requirements</a> section.</p>
+</li>
+</ol>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_launch_the_quick_start">Launch the Quick Start</h3>
 <div class="admonitionblock note">
@@ -1195,7 +1200,7 @@ You are responsible for the cost of the AWS services used while running this Qui
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-When deploying the infrastructure CI/CD pipeline and IDE with CRPM into an existing VPC, make sure that you have a default VPC with a default public subnet for the IDE instance. This subnet requires internet access, to allow instances to download software.
+When deploying the infrastructure CI/CD pipeline and IDE with CRPM into an existing VPC, make sure that you have a default VPC with a default public subnet for the IDE instance. This subnet requires internet access for the instances to download software.
 </td>
 </tr>
 </table>
@@ -1205,6 +1210,9 @@ When deploying the infrastructure CI/CD pipeline and IDE with CRPM into an exist
 </div>
 <div class="paragraph">
 <p>AWS CDK allows you to use familiar programming tools and syntax to define infrastructure as code and to provision it through AWS CloudFormation.</p>
+</div>
+<div class="paragraph">
+<p>Do the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1233,7 +1241,7 @@ When deploying the infrastructure CI/CD pipeline and IDE with CRPM into an exist
 </div>
 </li>
 <li>
-<p>Deploy the resources defined in the SWIFT Connectivity stack:</p>
+<p>Clone the CRPM Quick Start repository:</p>
 <div class="literalblock">
 <div class="content">
 <pre>git clone https://github.com/aws-quickstart/quickstart-shi-crpm.git
@@ -1265,16 +1273,16 @@ cd quickstart-shi-crpm</pre>
 <div class="sect1">
 <h2 id="_test_the_deployment">Test the deployment</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>After the Quick Start CloudFormation stack is created, do these steps:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Wait for the Quick Start CloudFormation stack to finish being created.</p>
+<p>In the <a href="https://aws.amazon.com/console" target="_blank" rel="noopener">AWS Management Console</a>, open the newly created <a href="https://aws.amazon.com/cloud9" target="_blank" rel="noopener">AWS Cloud9</a> environment.</p>
 </li>
 <li>
-<p>In the <a href="https://aws.amazon.com/console" target="_blank" rel="noopener">AWS Console</a>, open the newly created <a href="https://aws.amazon.com/cloud9" target="_blank" rel="noopener">AWS Cloud9</a> environment.</p>
-</li>
-<li>
-<p>Then, try changing some property value in any <strong>props.yaml</strong> file in one of the nested directories in <strong>quick-start/res/</strong>. For example, you could change the build server type from <strong>BUILD_GENERAL1_SMALL</strong> to <strong>BUILD_GENERAL1_MEDIUM</strong> as seen in the screenshot below. You can learn more about <strong>CRPM</strong> and property files <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">here</a>.</p>
+<p>Change a property value in the <strong>props.yaml</strong> file in any one of the nested directories in the <strong>quick-start/res/</strong> directory. For example, you can change the build server type from <strong>BUILD_GENERAL1_SMALL</strong> to <strong>BUILD_GENERAL1_MEDIUM</strong>, as seen in the following image. To learn more about CRPM and property files, see <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">AWS CloudFormation, piece by piece</a>.</p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="images/screenshot1.png"><img src="images/screenshot1.png" alt="Architecture" width="648" height="439"></a>
@@ -1282,7 +1290,7 @@ cd quickstart-shi-crpm</pre>
 </div>
 </li>
 <li>
-<p>On the command line, commit the change and push it to AWS CodeCommit to kick off AWS CodePipeline as seen in the screenshot below.</p>
+<p>On the command line, commit the change and push it to AWS CodeCommit to kick off AWS CodePipeline, as seen in the following image.</p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="images/screenshot2.png"><img src="images/screenshot2.png" alt="Architecture" width="648" height="439"></a>
@@ -1290,7 +1298,7 @@ cd quickstart-shi-crpm</pre>
 </div>
 </li>
 <li>
-<p>In the <a href="https://aws.amazon.com/console" target="_blank" rel="noopener">AWS Console</a>, open the <a href="https://aws.amazon.com/codepipeline" target="_blank" rel="noopener">AWS CodePipeline</a> that was created.  Then, scroll down to the <strong>Review</strong> stage, click the <strong>Review</strong> button, enter a message, and click the <strong>Approve</strong> button as seen in the screenshot below.</p>
+<p>In the AWS Management Console, open the <a href="https://aws.amazon.com/codepipeline" target="_blank" rel="noopener">AWS CodePipeline</a> that was created. Then, scroll down to the <strong>Review</strong> stage, choose the <strong>Review</strong> button, enter a message, and choose the <strong>Approve</strong> button, as seen in the following image.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1298,7 +1306,7 @@ cd quickstart-shi-crpm</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The first time the Quick Start is launched, the pipeline will run automatically.  You can approve it and let it continue completing, as it will not update anything.
+The first time the Quick Start is launched, the pipeline runs automatically. You can approve it and let it continue completing, as it will not update anything.
 </td>
 </tr>
 </table>
@@ -1310,7 +1318,7 @@ The first time the Quick Start is launched, the pipeline will run automatically.
 </div>
 </li>
 <li>
-<p>After the <strong>Deploy</strong> stage has finished, navigate in the console to the resource whose property you changed, and verify that it has changed.</p>
+<p>After the <strong>Deploy</strong> stage has completed, open the console and navigate to the resource with the property that you changed, and verify the update.</p>
 </li>
 </ol>
 </div>
@@ -1320,7 +1328,7 @@ The first time the Quick Start is launched, the pipeline will run automatically.
 <h2 id="_best_practices_for_using_crpm_on_aws">Best practices for using CRPM on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can learn more about importing property files into AWS CDK applications with <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a>.</p>
+<p>Learn more about importing property files into AWS CDK applications with <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a>.</p>
 </div>
 </div>
 </div>
@@ -1331,7 +1339,7 @@ The first time the Quick Start is launched, the pipeline will run automatically.
 <p><strong>Q.</strong> The AWS CodePipeline pipeline failed at the <strong>Deploy</strong> stage after I approved it.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> When the CI/CD pipeline is created, it will automatically run for the first time even though nothing has changed.  After approving it, sometimes it shows as failed even though nothing failed.  This can also happen after changing a property to the AWS CodePipeline pipeline resource.  If everything looks as expected after the pipeline finishes running, you can ignore the failure notice.</p>
+<p><strong>A.</strong> When the CI/CD pipeline is created, it automatically runs for the first time even though nothing has changed. After approving it, sometimes it shows as failed even though nothing failed. This can also happen after changing a property to the AWS CodePipeline pipeline resource. If everything looks as expected after the pipeline finishes running, you can ignore the failure notice.</p>
 </div>
 </div>
 </div>
@@ -1339,7 +1347,7 @@ The first time the Quick Start is launched, the pipeline will run automatically.
 <h2 id="_troubleshooting">Troubleshooting</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Please check the <strong>Events</strong> tab on the CloudFormation stacks created by this Quick Start for error explanations.  Also, click the <strong>Details</strong> link on the <strong>Build</strong> or <strong>Deploy</strong> stages of the pipeline to view failure details.  Check the AWS CodeCommit code commit diff to see what changes triggered the pipeline.</p>
+<p>Check the <strong>Events</strong> tab on the CloudFormation stacks created by this Quick Start for error explanations. Also, choose the <strong>Details</strong> link on the <strong>Build</strong> or <strong>Deploy</strong> stages of the pipeline to view failure details. Check the AWS CodeCommit <strong>diff</strong> tool to see what changes triggered the pipeline.</p>
 </div>
 </div>
 </div>
@@ -1389,3 +1397,10 @@ and to share your customizations with others.</p>
 </p>
 </body>
 </html>
+<!--
+repo commit:
+a4467db39601668d4cf738881a2ca0fc7750398a
+
+submodule config:
++043db710e71444c3b66cdcc02d8b2b7c1aed26e0 docs/boilerplate (heads/main)
+-->

@@ -2,7 +2,6 @@
 // Identify your target audience and explain how/why they would use this Quick Start.
 //Avoid borrowing text from third-party websites (copying text from AWS service documentation is fine). Also, avoid marketing-speak, focusing instead on the technical aspect.
 
-This Quick Start reference deployment guide provides step-by-step instructions for deploying infrastructure with {partner-product-short-name} on the AWS Cloud.
+This Quick Start reference deployment guide provides step-by-step instructions for deploying infrastructure with {partner-product-name} (CRPM) on the AWS Cloud.
 
-It is a demonstration for users who would like to create cloud infrastructure solutions that are broken down into YAML property files, which are stitched together with AWS CDK code.
-With this approach, YAML files are used for property assignment and TypeScript files are used for storing logic.
+The Quick Start demonstrates how you can create a cloud infrastructure with .yaml property files that are stitched together with AWS Cloud Development Kit (AWS CDK) code. With this approach, .yaml files are used for property assignment, and TypeScript files are used for storing logic.

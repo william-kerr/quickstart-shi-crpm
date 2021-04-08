@@ -1,0 +1,872 @@
+{
+  "Description": "Infrastructure CI-CD quick start (qs-1rcmkurut)",
+  "Parameters": {
+    "IdeStackTemplateURL": {
+      "Type": "String",
+      "Description": "IDE stack CloudFormation template S3 URL parameter"
+    }
+  },
+  "Resources": {
+    "CloudFormationRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudformation.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloud9:DeleteEnvironment",
+                    "cloud9:DescribeEnvironments",
+                    "codecommit:*",
+                    "codebuild:*",
+                    "codepipeline:*",
+                    "events:*",
+                    "iam:*",
+                    "lambda:*",
+                    "s3:*",
+                    "sns:*",
+                    "ssm:DeleteDocument",
+                    "ssm:DescribeDocument",
+                    "ssm:GetDocument"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/CloudFormationRole"
+      }
+    },
+    "Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 30
+              },
+              "NoncurrentVersionExpirationInDays": 90,
+              "NoncurrentVersionTransitions": [
+                {
+                  "StorageClass": "STANDARD_IA",
+                  "TransitionInDays": 30
+                }
+              ],
+              "Status": "Enabled",
+              "Transitions": [
+                {
+                  "StorageClass": "STANDARD_IA",
+                  "TransitionInDays": 30
+                }
+              ]
+            }
+          ]
+        },
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Bucket"
+      }
+    },
+    "LambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:AssociateIamInstanceProfile",
+                    "ec2:DescribeInstances",
+                    "ec2:RebootInstances",
+                    "iam:PassRole",
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "s3:DeleteObject",
+                    "s3:DeleteObjectVersion",
+                    "s3:ListBucketVersions",
+                    "s3:PutObject",
+                    "ssm:DescribeInstanceInformation",
+                    "ssm:SendCommand"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "DependsOn": [
+        "CloudFormationRole"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "quickstart/LambdaRole"
+      }
+    },
+    "Function": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "ZipFile": "import boto3, json, shutil, urllib3, zipfile\n\nhttp = urllib3.PoolManager()\n\n# TODO: CHANGE GITHUB_ACCOUNT_NAME TO 'aws-quickstart' FROM 'shi' WHEN THE QUICK START GOES LIVE\nGITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'\nGITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'\n\ndef lambda_handler(event, context):\n    print('Event:', event['RequestType'])\n    \n    artifact_bucket_name = event['ResourceProperties']['ArtifactBucketName']\n    print('Artifact Bucket Name:', artifact_bucket_name)\n    \n    empty_bucket_on_delete = event['ResourceProperties']['EmptyBucketOnDelete']\n    print('Empty Bucket On Delete:', empty_bucket_on_delete)\n    \n    if (event['RequestType'] == 'Create'):\n        try:\n            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/main'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:\n                shutil.copyfileobj(res, out_file)\n            \n            with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:\n                zf.extractall('/tmp')\n            \n            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-main'.format(GITHUB_REPOSITORY_NAME))\n            \n            s3 = boto3.client('s3')\n            with open('/tmp/source2.zip', 'rb') as f:\n                s3.upload_fileobj(f, artifact_bucket_name, 'quick-start/Source/{}.zip'.format(GITHUB_REPOSITORY_NAME))\n            \n            print('Copied quick start source from GitHub to S3')\n            return send(event, context, 'SUCCESS')\n        except:\n            return send(event, context, 'FAILED', 'Could not copy quick start source from GitHub to S3')\n    elif (event['RequestType'] == 'Delete' and empty_bucket_on_delete):\n        try:\n            client = boto3.client('s3')\n            paginator = client.get_paginator('list_object_versions')\n            response_iterator = paginator.paginate(Bucket=artifact_bucket_name)\n            for response in response_iterator:\n                versions = response.get('Versions', [])\n                versions.extend(response.get('DeleteMarkers', []))\n                for key, version_id in [[v['Key'], v['VersionId']] for v in versions]:\n                    client.delete_object(Bucket=artifact_bucket_name, Key=key, VersionId=version_id)\n        except:\n            return send(event, context, 'FAILED', 'Could not empty bucket')\n    \n    send(event, context, 'SUCCESS')\n\ndef send(event, context, status, data=''):\n    body = {\n        'Status': status,\n        'Reason': 'See the details in CloudWatch Log Stream: ' + context.log_stream_name,\n        'PhysicalResourceId': context.log_stream_name,\n        'StackId': event['StackId'],\n        'RequestId': event['RequestId'],\n        'LogicalResourceId': event['LogicalResourceId'],\n        'NoEcho': False,\n        'Data': {'Data': data}\n    }\n    \n    json_body = json.dumps(body)\n    \n    headers = {\n        'content-type': '',\n        'content-length': str(len(json_body))\n    }\n    \n    http.request('PUT', event['ResponseURL'], body=json_body, headers=headers)\n"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaRole",
+            "Arn"
+          ]
+        },
+        "Description": "Clones the Quick Start source code and saves it in an S3 artifact bucket on creation, and empties the bucket on deletion",
+        "Handler": "index.lambda_handler",
+        "Runtime": "python3.6",
+        "Timeout": 300
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Function"
+      }
+    },
+    "CustomResource": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "Function",
+            "Arn"
+          ]
+        },
+        "ArtifactBucketName": {
+          "Ref": "Bucket"
+        },
+        "EmptyBucketOnDelete": true
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/CustomResource"
+      }
+    },
+    "Repository": {
+      "Type": "AWS::CodeCommit::Repository",
+      "Properties": {
+        "RepositoryName": {
+          "Ref": "AWS::StackName"
+        },
+        "Code": {
+          "S3": {
+            "Bucket": {
+              "Ref": "Bucket"
+            },
+            "Key": "quick-start/Source/quickstart-shi-crpm.zip"
+          }
+        },
+        "RepositoryDescription": "Infrastructure repository created by an AWS Quick Start."
+      },
+      "DependsOn": [
+        "CustomResource"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Repository"
+      }
+    },
+    "CodeBuildRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codebuild.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Action": [
+                    "cloudformation:ValidateTemplate",
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "s3:GetObject",
+                    "s3:PutObject"
+                  ],
+                  "Resource": "*",
+                  "Effect": "Allow"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/CodeBuildRole"
+      }
+    },
+    "Project": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": [
+            {
+              "Name": "IDE_STACK_TEMPLATE_URL",
+              "Value": {
+                "Ref": "IdeStackTemplateURL"
+              }
+            }
+          ],
+          "Image": "aws/codebuild/amazonlinux2-x86_64-standard:3.0",
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Fn::GetAtt": [
+            "CodeBuildRole",
+            "Arn"
+          ]
+        },
+        "Source": {
+          "Type": "CODEPIPELINE"
+        },
+        "Description": "Build CloudFormation templates"
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Project"
+      }
+    },
+    "CodePipelineRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codepipeline.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloudformation:CreateStack",
+                    "cloudformation:DeleteStack",
+                    "cloudformation:DescribeStacks",
+                    "cloudformation:UpdateStack",
+                    "cloudformation:CreateChangeSet",
+                    "cloudformation:DeleteChangeSet",
+                    "cloudformation:DescribeChangeSet",
+                    "cloudformation:ExecuteChangeSet",
+                    "cloudformation:SetStackPolicy",
+                    "cloudformation:ValidateTemplate",
+                    "codebuild:BatchGetBuilds",
+                    "codebuild:StartBuild",
+                    "codecommit:GetBranch",
+                    "codecommit:GetCommit",
+                    "codecommit:UploadArchive",
+                    "codecommit:GetUploadArchiveStatus",
+                    "codecommit:CancelUploadArchive",
+                    "iam:PassRole",
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "sns:Publish"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/CodePipelineRole"
+      }
+    },
+    "Pipeline": {
+      "Type": "AWS::CodePipeline::Pipeline",
+      "Properties": {
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "CodePipelineRole",
+            "Arn"
+          ]
+        },
+        "Stages": [
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeCommit",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "BranchName": "main",
+                  "PollForSourceChanges": "false",
+                  "RepositoryName": {
+                    "Fn::GetAtt": [
+                      "Repository",
+                      "Name"
+                    ]
+                  }
+                },
+                "Name": "Fetch",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Source"
+                  }
+                ]
+              }
+            ],
+            "Name": "Source"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
+                    "Ref": "Project"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Source"
+                  }
+                ],
+                "Name": "SynthesizeAndTest",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Package"
+                  }
+                ]
+              }
+            ],
+            "Name": "Build"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ActionMode": "CHANGE_SET_REPLACE",
+                  "Capabilities": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM",
+                  "ChangeSetName": "pipeline",
+                  "OutputFileName": "create-change-set/pipeline.json",
+                  "TemplatePath": "Package::cdk.out/quickstart.template.json",
+                  "ParameterOverrides": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "{\"IdeStackTemplateURL\": \"",
+                        {
+                          "Ref": "IdeStackTemplateURL"
+                        },
+                        "\"}"
+                      ]
+                    ]
+                  },
+                  "RoleArn": {
+                    "Fn::GetAtt": [
+                      "CloudFormationRole",
+                      "Arn"
+                    ]
+                  },
+                  "StackName": {
+                    "Ref": "AWS::StackName"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Package"
+                  }
+                ],
+                "Name": "ReplaceChangeSet",
+                "RunOrder": 1
+              },
+              {
+                "ActionTypeId": {
+                  "Category": "Approval",
+                  "Owner": "AWS",
+                  "Provider": "Manual",
+                  "Version": "1"
+                },
+                "Name": "Approve",
+                "RunOrder": 2
+              }
+            ],
+            "Name": "Review"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ActionMode": "CHANGE_SET_EXECUTE",
+                  "Capabilities": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM",
+                  "ChangeSetName": "pipeline",
+                  "OutputFileName": "execute-change-set/pipeline.json",
+                  "TemplatePath": "Package::cdk.out/quickstart.template.json",
+                  "ParameterOverrides": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "{\"IdeStackTemplateURL\": \"",
+                        {
+                          "Ref": "IdeStackTemplateURL"
+                        },
+                        "\"}"
+                      ]
+                    ]
+                  },
+                  "RoleArn": {
+                    "Fn::GetAtt": [
+                      "CloudFormationRole",
+                      "Arn"
+                    ]
+                  },
+                  "StackName": {
+                    "Ref": "AWS::StackName"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Package"
+                  }
+                ],
+                "Name": "ExecuteChangeSet"
+              }
+            ],
+            "Name": "Deploy"
+          }
+        ],
+        "ArtifactStore": {
+          "Location": {
+            "Ref": "Bucket"
+          },
+          "Type": "S3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Pipeline"
+      }
+    },
+    "EventsRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "codepipeline:StartPipelineExecution",
+                  "Resource": "*"
+                }
+              ]
+            },
+            "PolicyName": "root"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/EventsRole"
+      }
+    },
+    "Rule": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Triggers a pipeline to update the current infrastructure to match the current main branch.",
+        "EventPattern": {
+          "source": [
+            "aws.codecommit"
+          ],
+          "detail-type": [
+            "CodeCommit Repository State Change"
+          ],
+          "detail": {
+            "referenceType": [
+              "branch"
+            ],
+            "referenceName": [
+              "main"
+            ]
+          },
+          "resources": [
+            {
+              "Fn::GetAtt": [
+                "Repository",
+                "Arn"
+              ]
+            }
+          ]
+        },
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:aws:codepipeline:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "Pipeline"
+                  }
+                ]
+              ]
+            },
+            "Id": "codepipeline",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "EventsRole",
+                "Arn"
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Rule"
+      }
+    },
+    "Stack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Ref": "IdeStackTemplateURL"
+        },
+        "Parameters": {
+          "RepoName": {
+            "Fn::GetAtt": [
+              "Repository",
+              "Name"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/Stack"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAA02QTW4DMQiFz9K94/wtqu6qRuo2UXoCBxOJGduMbEgVjebuHdwuuuLxAQ/E3r+9+t3Le/huG4jjdgau6OcvCTC6071cQg0ZBaslZ5VJxZ24NKkKYuyKjbUCml4LkYS4LM78ZgrZWwsndO1o8kNhRHEp5FsMBj61gE04SKzxzjUHS/1sdtqE8/8F/azFAUcEzpmk2+PEjYTrsxduSikav1QecD3S4EQTJirY+Z92+MAirVtowmVxZe30Q9s+9jt/OKxvGRrRpmoRyuivv/EHQSg+5TIBAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "quickstart/CDKMetadata/Default"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Outputs": {
+    "CodeCommitURL": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Repository",
+          "CloneUrlHttp"
+        ]
+      }
+    },
+    "CodePipelineName": {
+      "Value": {
+        "Ref": "Pipeline"
+      }
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "af-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
