@@ -2,8 +2,7 @@ import boto3, json, shutil, urllib3, zipfile
 
 http = urllib3.PoolManager()
 
-# TODO: CHANGE GITHUB_ACCOUNT_NAME TO 'aws-quickstart' FROM 'shi' WHEN THE QUICK START GOES LIVE
-GITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'
+GITHUB_ACCOUNT_NAME = 'aws-quickstart'
 GITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'
 
 def lambda_handler(event, context):

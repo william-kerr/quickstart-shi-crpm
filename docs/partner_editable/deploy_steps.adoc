@@ -30,7 +30,7 @@ Do the following steps:
 
   npm i -g typescript
 
-. Deploy the resources defined in the {partner-product-short-name} stack:
+. Clone the {partner-product-short-name} Quick Start repository:
 
   git clone https://github.com/aws-quickstart/quickstart-shi-crpm.git
   cd quickstart-shi-crpm
