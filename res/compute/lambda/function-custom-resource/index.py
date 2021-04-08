@@ -2,6 +2,7 @@ import boto3, json, shutil, urllib3, zipfile
 
 http = urllib3.PoolManager()
 
+# TODO: CHANGE GITHUB_ACCOUNT_NAME TO 'aws-quickstart' FROM 'shi' WHEN THE QUICK START GOES LIVE
 GITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'
 GITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'
 
@@ -16,13 +17,13 @@ def lambda_handler(event, context):
     
     if (event['RequestType'] == 'Create'):
         try:
-            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/master'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:
+            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/main'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:
                 shutil.copyfileobj(res, out_file)
             
             with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:
                 zf.extractall('/tmp')
             
-            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-master'.format(GITHUB_REPOSITORY_NAME))
+            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-main'.format(GITHUB_REPOSITORY_NAME))
             
             s3 = boto3.client('s3')
             with open('/tmp/source2.zip', 'rb') as f:

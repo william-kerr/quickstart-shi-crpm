@@ -6,7 +6,11 @@
     "children": {
       "Tree": {
         "id": "Tree",
-        "path": "Tree"
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.97.0"
+        }
       },
       "quickstart": {
         "id": "quickstart",
@@ -14,7 +18,11 @@
         "children": {
           "IdeStackTemplateURL": {
             "id": "IdeStackTemplateURL",
-            "path": "quickstart/IdeStackTemplateURL"
+            "path": "quickstart/IdeStackTemplateURL",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnParameter",
+              "version": "1.97.0"
+            }
           },
           "CloudFormationRole": {
             "id": "CloudFormationRole",
@@ -66,6 +74,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Bucket": {
@@ -101,6 +113,10 @@
                   "status": "Enabled"
                 }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.CfnBucket",
+              "version": "1.97.0"
             }
           },
           "LambdaRole": {
@@ -153,6 +169,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Function": {
@@ -162,19 +182,23 @@
               "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
               "aws:cdk:cloudformation:props": {
                 "code": {
-                  "zipFile": "import boto3, json, shutil, urllib3, zipfile\n\nhttp = urllib3.PoolManager()\n\nGITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'\nGITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'\n\ndef lambda_handler(event, context):\n    print('Event:', event['RequestType'])\n    \n    artifact_bucket_name = event['ResourceProperties']['ArtifactBucketName']\n    print('Artifact Bucket Name:', artifact_bucket_name)\n    \n    empty_bucket_on_delete = event['ResourceProperties']['EmptyBucketOnDelete']\n    print('Empty Bucket On Delete:', empty_bucket_on_delete)\n    \n    if (event['RequestType'] == 'Create'):\n        try:\n            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/master'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:\n                shutil.copyfileobj(res, out_file)\n            \n            with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:\n                zf.extractall('/tmp')\n            \n            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-master'.format(GITHUB_REPOSITORY_NAME))\n            \n            s3 = boto3.client('s3')\n            with open('/tmp/source2.zip', 'rb') as f:\n                s3.upload_fileobj(f, artifact_bucket_name, 'quick-start/Source/{}.zip'.format(GITHUB_REPOSITORY_NAME))\n            \n            print('Copied quick start source from GitHub to S3')\n            return send(event, context, 'SUCCESS')\n        except:\n            return send(event, context, 'FAILED', 'Could not copy quick start source from GitHub to S3')\n    elif (event['RequestType'] == 'Delete' and empty_bucket_on_delete):\n        try:\n            client = boto3.client('s3')\n            paginator = client.get_paginator('list_object_versions')\n            response_iterator = paginator.paginate(Bucket=artifact_bucket_name)\n            for response in response_iterator:\n                versions = response.get('Versions', [])\n                versions.extend(response.get('DeleteMarkers', []))\n                for key, version_id in [[v['Key'], v['VersionId']] for v in versions]:\n                    client.delete_object(Bucket=artifact_bucket_name, Key=key, VersionId=version_id)\n        except:\n            return send(event, context, 'FAILED', 'Could not empty bucket')\n    \n    send(event, context, 'SUCCESS')\n\ndef send(event, context, status, data=''):\n    body = {\n        'Status': status,\n        'Reason': 'See the details in CloudWatch Log Stream: ' + context.log_stream_name,\n        'PhysicalResourceId': context.log_stream_name,\n        'StackId': event['StackId'],\n        'RequestId': event['RequestId'],\n        'LogicalResourceId': event['LogicalResourceId'],\n        'NoEcho': False,\n        'Data': {'Data': data}\n    }\n    \n    json_body = json.dumps(body)\n    \n    headers = {\n        'content-type': '',\n        'content-length': str(len(json_body))\n    }\n    \n    http.request('PUT', event['ResponseURL'], body=json_body, headers=headers)\n"
+                  "zipFile": "import boto3, json, shutil, urllib3, zipfile\n\nhttp = urllib3.PoolManager()\n\n# TODO: CHANGE GITHUB_ACCOUNT_NAME TO 'aws-quickstart' FROM 'shi' WHEN THE QUICK START GOES LIVE\nGITHUB_ACCOUNT_NAME = 'shi' #'aws-quickstart'\nGITHUB_REPOSITORY_NAME = 'quickstart-shi-crpm'\n\ndef lambda_handler(event, context):\n    print('Event:', event['RequestType'])\n    \n    artifact_bucket_name = event['ResourceProperties']['ArtifactBucketName']\n    print('Artifact Bucket Name:', artifact_bucket_name)\n    \n    empty_bucket_on_delete = event['ResourceProperties']['EmptyBucketOnDelete']\n    print('Empty Bucket On Delete:', empty_bucket_on_delete)\n    \n    if (event['RequestType'] == 'Create'):\n        try:\n            with http.request('GET', 'https://codeload.github.com/{}/{}/zip/main'.format(GITHUB_ACCOUNT_NAME, GITHUB_REPOSITORY_NAME), preload_content=False) as res, open('/tmp/source.zip', 'wb') as out_file:\n                shutil.copyfileobj(res, out_file)\n            \n            with zipfile.ZipFile('/tmp/source.zip', 'r') as zf:\n                zf.extractall('/tmp')\n            \n            shutil.make_archive('/tmp/source2', 'zip', '/tmp/{}-main'.format(GITHUB_REPOSITORY_NAME))\n            \n            s3 = boto3.client('s3')\n            with open('/tmp/source2.zip', 'rb') as f:\n                s3.upload_fileobj(f, artifact_bucket_name, 'quick-start/Source/{}.zip'.format(GITHUB_REPOSITORY_NAME))\n            \n            print('Copied quick start source from GitHub to S3')\n            return send(event, context, 'SUCCESS')\n        except:\n            return send(event, context, 'FAILED', 'Could not copy quick start source from GitHub to S3')\n    elif (event['RequestType'] == 'Delete' and empty_bucket_on_delete):\n        try:\n            client = boto3.client('s3')\n            paginator = client.get_paginator('list_object_versions')\n            response_iterator = paginator.paginate(Bucket=artifact_bucket_name)\n            for response in response_iterator:\n                versions = response.get('Versions', [])\n                versions.extend(response.get('DeleteMarkers', []))\n                for key, version_id in [[v['Key'], v['VersionId']] for v in versions]:\n                    client.delete_object(Bucket=artifact_bucket_name, Key=key, VersionId=version_id)\n        except:\n            return send(event, context, 'FAILED', 'Could not empty bucket')\n    \n    send(event, context, 'SUCCESS')\n\ndef send(event, context, status, data=''):\n    body = {\n        'Status': status,\n        'Reason': 'See the details in CloudWatch Log Stream: ' + context.log_stream_name,\n        'PhysicalResourceId': context.log_stream_name,\n        'StackId': event['StackId'],\n        'RequestId': event['RequestId'],\n        'LogicalResourceId': event['LogicalResourceId'],\n        'NoEcho': False,\n        'Data': {'Data': data}\n    }\n    \n    json_body = json.dumps(body)\n    \n    headers = {\n        'content-type': '',\n        'content-length': str(len(json_body))\n    }\n    \n    http.request('PUT', event['ResponseURL'], body=json_body, headers=headers)\n"
                 },
-                "handler": "index.lambda_handler",
                 "role": {
                   "Fn::GetAtt": [
                     "LambdaRole",
                     "Arn"
                   ]
                 },
-                "runtime": "python3.6",
                 "description": "Clones the Quick Start source code and saves it in an S3 artifact bucket on creation, and empties the bucket on deletion",
+                "handler": "index.lambda_handler",
+                "runtime": "python3.6",
                 "timeout": 300
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+              "version": "1.97.0"
             }
           },
           "CustomResource": {
@@ -190,6 +214,10 @@
                   ]
                 }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cloudformation.CfnCustomResource",
+              "version": "1.97.0"
             }
           },
           "Repository": {
@@ -211,6 +239,10 @@
                 },
                 "repositoryDescription": "Infrastructure repository created by an AWS Quick Start."
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-codecommit.CfnRepository",
+              "version": "1.97.0"
             }
           },
           "CodeBuildRole": {
@@ -256,6 +288,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Project": {
@@ -291,6 +327,10 @@
                 },
                 "description": "Build CloudFormation templates"
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-codebuild.CfnProject",
+              "version": "1.97.0"
             }
           },
           "CodePipelineRole": {
@@ -351,6 +391,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Pipeline": {
@@ -376,7 +420,7 @@
                           "version": "1"
                         },
                         "configuration": {
-                          "BranchName": "master",
+                          "BranchName": "main",
                           "PollForSourceChanges": "false",
                           "RepositoryName": {
                             "Fn::GetAtt": [
@@ -537,6 +581,10 @@
                   "type": "S3"
                 }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-codepipeline.CfnPipeline",
+              "version": "1.97.0"
             }
           },
           "EventsRole": {
@@ -575,6 +623,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Rule": {
@@ -583,7 +635,7 @@
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::Events::Rule",
               "aws:cdk:cloudformation:props": {
-                "description": "Triggers a pipeline to update the current infrastructure to match the current master branch.",
+                "description": "Triggers a pipeline to update the current infrastructure to match the current main branch.",
                 "eventPattern": {
                   "source": [
                     "aws.codecommit"
@@ -596,7 +648,7 @@
                       "branch"
                     ],
                     "referenceName": [
-                      "master"
+                      "main"
                     ]
                   },
                   "resources": [
@@ -639,6 +691,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-events.CfnRule",
+              "version": "1.97.0"
             }
           },
           "Stack": {
@@ -659,15 +715,27 @@
                   }
                 }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cloudformation.CfnStack",
+              "version": "1.97.0"
             }
           },
           "CodeCommitURL": {
             "id": "CodeCommitURL",
-            "path": "quickstart/CodeCommitURL"
+            "path": "quickstart/CodeCommitURL",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.97.0"
+            }
           },
           "CodePipelineName": {
             "id": "CodePipelineName",
-            "path": "quickstart/CodePipelineName"
+            "path": "quickstart/CodePipelineName",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.97.0"
+            }
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
@@ -675,14 +743,30 @@
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "quickstart/CDKMetadata/Default"
+                "path": "quickstart/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.97.0"
+                }
               },
               "Condition": {
                 "id": "Condition",
-                "path": "quickstart/CDKMetadata/Condition"
+                "path": "quickstart/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.97.0"
+                }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.97.0"
             }
           }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.97.0"
         }
       },
       "ide": {
@@ -691,7 +775,11 @@
         "children": {
           "RepoName": {
             "id": "RepoName",
-            "path": "ide/RepoName"
+            "path": "ide/RepoName",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnParameter",
+              "version": "1.97.0"
+            }
           },
           "EnvironmentEC2": {
             "id": "EnvironmentEC2",
@@ -700,7 +788,7 @@
               "aws:cdk:cloudformation:type": "AWS::Cloud9::EnvironmentEC2",
               "aws:cdk:cloudformation:props": {
                 "instanceType": "t3.small",
-                "description": "Created by an AWS Quick Start.  CRPM is pre-installed and the infrastructure code master branch is checked out.",
+                "description": "Created by an AWS Quick Start.  CRPM is pre-installed and the infrastructure code main branch is checked out.",
                 "name": {
                   "Ref": "AWS::StackName"
                 },
@@ -725,6 +813,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cloud9.CfnEnvironmentEC2",
+              "version": "1.97.0"
             }
           },
           "EC2Role": {
@@ -754,6 +846,10 @@
                   "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "InstanceProfile": {
@@ -768,6 +864,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnInstanceProfile",
+              "version": "1.97.0"
             }
           },
           "Document": {
@@ -794,6 +894,10 @@
                 },
                 "documentType": "Command"
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ssm.CfnDocument",
+              "version": "1.97.0"
             }
           },
           "LambdaRole": {
@@ -846,6 +950,10 @@
                   }
                 ]
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.CfnRole",
+              "version": "1.97.0"
             }
           },
           "Function": {
@@ -857,17 +965,21 @@
                 "code": {
                   "zipFile": "const aws = require('aws-sdk');\nconst response = require('cfn-response');\nconst util = require('util');\n\nconst ec2 = new aws.EC2({ apiVersion: '2016-11-15' });\nconst ssm = new aws.SSM({ apiVersion: '2014-11-06' });\nconst send = util.promisify(response.send);\n\nexports.handler =  async function(event, context) {\n  const cloud9EnvironmentId = event.ResourceProperties.cloud9EnvironmentId;\n  console.log(event.RequestType, 'Cloud9 Environment:', cloud9EnvironmentId);\n  \n  if (event.RequestType != 'Create') {\n    await send(event, context, response.SUCCESS);\n    return;\n  }\n  \n  try {\n    const instanceParams = {\n      Filters: [\n        {\n          Name: 'tag:aws:cloud9:environment',\n          Values: [\n            cloud9EnvironmentId\n          ]\n        }\n      ]\n    };\n    \n    // Get the instance ID\n    let data = await ec2.describeInstances(instanceParams).promise();\n    const instanceId = data.Reservations[0].Instances[0].InstanceId;\n    console.log('Instance ID:', instanceId);\n      \n    // Associate an instance profile for SSM\n    const instanceProfileName = event.ResourceProperties.instanceProfileName;\n    await ec2.associateIamInstanceProfile({\n      IamInstanceProfile: {\n        Name: instanceProfileName\n      },\n      InstanceId: instanceId\n    }).promise();\n    console.log('Associated instance profile', instanceProfileName);\n    \n    // Reboot the instance to make it available in SSM sooner\n    console.log('Rebooting Instance');\n    await ec2.rebootInstances({\n      InstanceIds: [\n        instanceId\n      ]\n    }).promise();\n    \n    // Wait for the instance to be running\n    await ec2.waitFor('instanceRunning', instanceParams).promise();\n    console.log('Instance Running');\n    \n    for (var i = 0; i < 16; i++) {\n      console.log('Waiting for SSM');\n      data = await ssm.describeInstanceInformation({\n        Filters: [\n          {\n            Key: 'InstanceIds',\n            Values: [\n              instanceId\n            ]\n          }\n        ]\n      }).promise();\n      if (data.InstanceInformationList.length > 0) {\n        console.log('Instance Ready');\n        break;\n      } else if (i == 15) {\n        await send(event, context, response.FAILED, { Error: 'Instance is not available in SSM' });\n      }\n      \n      // Sleep 15 seconds\n      await new Promise((resolve) => setTimeout(resolve, 15000));\n    }\n    \n    // Run a configuration script on the instance\n    const ssmDocumentName = event.ResourceProperties.ssmDocumentName;\n    data = await ssm.sendCommand({\n      DocumentName: ssmDocumentName,\n      CloudWatchOutputConfig: {\n        CloudWatchLogGroupName: `/aws/lambda/${context.functionName}`,\n        CloudWatchOutputEnabled: true\n      },\n      Comment: 'Configure Cloud9 Environment',\n      InstanceIds: [\n        instanceId\n      ]\n    }).promise();\n    console.log('Sent configuration script for execution via SSM', ssmDocumentName);\n  } catch (err) {\n    await send(event, context, response.FAILED, err);\n    return;\n  }\n  \n  await send(event, context, response.SUCCESS);\n};\n"
                 },
-                "handler": "index.handler",
                 "role": {
                   "Fn::GetAtt": [
                     "LambdaRole",
                     "Arn"
                   ]
                 },
-                "runtime": "nodejs10.x",
                 "description": "Configures a Cloud9 instance",
+                "handler": "index.handler",
+                "runtime": "nodejs10.x",
                 "timeout": 300
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-lambda.CfnFunction",
+              "version": "1.97.0"
             }
           },
           "CustomResource": {
@@ -883,11 +995,19 @@
                   ]
                 }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-cloudformation.CfnCustomResource",
+              "version": "1.97.0"
             }
           },
           "Cloud9EnvironmentName": {
             "id": "Cloud9EnvironmentName",
-            "path": "ide/Cloud9EnvironmentName"
+            "path": "ide/Cloud9EnvironmentName",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.97.0"
+            }
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
@@ -895,16 +1015,36 @@
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "ide/CDKMetadata/Default"
+                "path": "ide/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.97.0"
+                }
               },
               "Condition": {
                 "id": "Condition",
-                "path": "ide/CDKMetadata/Condition"
+                "path": "ide/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.97.0"
+                }
               }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.97.0"
             }
           }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.97.0"
         }
       }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.97.0"
     }
   }
 }
