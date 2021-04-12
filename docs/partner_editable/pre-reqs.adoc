@@ -4,6 +4,6 @@
 
 The Quick Start deploys an AWS Cloud9 Amazon Elastic Compute Cloud (Amazon EC2) instance into an existing default subnet in an existing default VPC. The default VPC must have internet access for the AWS Cloud9 IDE to download and install the {partner-product-short-name} software.
 
-==== Prepare for the AWS CloudFormation deployment
+==== Prepare for the AWS CDK deployment
 
-To deploy this stack, configure the AWS Command Line Interface (AWS CLI). For more information about the AWS CLI, see https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html[Configuring the AWS CLI^]. 
+To deploy this stack, configure the AWS Command Line Interface (AWS CLI) and install the TypeScript and AWS CDK. For more information about the AWS CLI, see https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html[Configuring the AWS CLI^]. 
