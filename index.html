@@ -878,8 +878,8 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_cloud_resource_property_manager_on_aws">Cloud Resource Property Manager on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Managing cloud resources includes managing the properties of the resources. <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a> helps organize the properties by importing .yaml files, which are stitched together with AWS CDK.
-CRPM keeps properties that are ideal for YAML in .yaml files, and puts all the logic into structured AWS CDK code. By keeping the properties organized, you can build a complex infrastructure while keeping technical debt to a minimum.</p>
+<p>Managing cloud resources involves managing the properties of the resources. <a href="https://shi.github.io/crpm" target="_blank" rel="noopener">CRPM</a> helps organize the properties by importing .yaml files, which are stitched together with AWS CDK.
+CRPM keeps properties that are ideal for YAML, in .yaml files, and puts all the logic into structured AWS CDK code. By keeping the properties organized, you can build a complex infrastructure while keeping technical debt to a minimum.</p>
 </div>
 <div class="paragraph">
 <p>The Quick Start creates a CI/CD infrastructure that is integrated with CRPM. The architecture is designed to watch itself for changes. When changes are made to the properties that define the pipeline, the pipeline is updated. The infrastructure code is hosted in AWS CodeCommit and cloned in an AWS Cloud9 environment. AWS CDK code is used with CRPM property files.</p>
@@ -950,13 +950,13 @@ AWS Cloud.</p>
 <p>AWS CodeBuild to test commits that are pushed to the repository.</p>
 </li>
 <li>
-<p>AWS CodePipeline to manage the source repository, build tests, and review and deploy the repository code.</p>
+<p>AWS CodePipeline to fetch infrastructure code, build and test a CloudFormation template, and review and deploy the infrastructure.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>An Amazon EventBridge rule to invoke AWS CodeBuild projects.</p>
+<p>An Amazon EventBridge rule to invoke AWS CodePipeline.</p>
 </li>
 <li>
 <p>An AWS Cloud9 IDE that contains the infrastructure code and installation of CRPM.</p>
@@ -985,8 +985,8 @@ AWS CodeCommit repository when it&#8217;s created.</p>
 </div>
 <div class="paragraph">
 <p>Next, AWS CloudFormation creates an AWS Cloud9 environment and runs
-an automation document to install CRPM. Now CRPM is available to use when the IDE is opened.
-The AWS CodeCommit repository is also copied into the AWS Cloud9 IDE for editing the infrastructure code.</p>
+an automation document to install CRPM. Now, CRPM is available to use when the IDE is opened.
+The AWS CodeCommit repository is also cloned into the AWS Cloud9 IDE for editing the infrastructure code.</p>
 </div>
 <div class="paragraph">
 <p>In the AWS Cloud9 IDE, after editing the infrastructure code and then committing and pushing the updates,
@@ -1007,7 +1007,7 @@ and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AW
 deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with AWS Cloud Development Kit (AWS CDK), AWS Developer Tools, and CRPM.</p>
+<p>This Quick Start assumes familiarity with AWS Cloud Development Kit (AWS CDK), AWS Developer Tools, and CRPM. For more information, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-typescript.html">Working with the AWS CDK in TypeScript</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1399,8 +1399,8 @@ and to share your customizations with others.</p>
 </html>
 <!--
 repo commit:
-a4467db39601668d4cf738881a2ca0fc7750398a
+fd6e6d14fba26d696f6e5e308d77c9e112ce65b3
 
 submodule config:
-+043db710e71444c3b66cdcc02d8b2b7c1aed26e0 docs/boilerplate (heads/main)
++59b9927c61cd1831141cf0350520c89abb2246da docs/boilerplate (heads/main)
 -->
