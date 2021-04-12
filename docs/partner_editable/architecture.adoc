@@ -12,8 +12,8 @@ As shown in Figure 1, the Quick Start sets up the following:
 * An infrastructure pipeline that contains:
 ** AWS CodeCommit to host the repository.
 ** AWS CodeBuild to test commits that are pushed to the repository.
-** AWS CodePipeline to manage the source repository, build tests, and review and deploy the repository code.
-* An Amazon EventBridge rule to invoke AWS CodeBuild projects.
+** AWS CodePipeline to fetch infrastructure code, build and test a CloudFormation template, and review and deploy the infrastructure.
+* An Amazon EventBridge rule to invoke AWS CodePipeline.
 * An AWS Cloud9 IDE that contains the infrastructure code and installation of {partner-product-short-name}.
 * Custom Lambda functions for cloning content to an Amazon S3 bucket.
 * Amazon S3 bucket for code artifacts.
@@ -29,8 +29,8 @@ Quick Start source code into an S3 bucket. The source code initializes the
 AWS CodeCommit repository when it's created.
 
 Next, AWS CloudFormation creates an AWS Cloud9 environment and runs
-an automation document to install {partner-product-short-name}. Now {partner-product-short-name} is available to use when the IDE is opened.
-The AWS CodeCommit repository is also copied into the AWS Cloud9 IDE for editing the infrastructure code.
+an automation document to install {partner-product-short-name}. Now, {partner-product-short-name} is available to use when the IDE is opened.
+The AWS CodeCommit repository is also cloned into the AWS Cloud9 IDE for editing the infrastructure code.
 
 In the AWS Cloud9 IDE, after editing the infrastructure code and then committing and pushing the updates,
 AWS CodePipeline fetches the source from AWS CodeCommit, synthesizes a CloudFormation template

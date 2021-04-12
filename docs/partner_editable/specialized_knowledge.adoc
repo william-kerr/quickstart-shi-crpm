@@ -1,4 +1,4 @@
 // Replace the content in <>
 // Describe or link to specific knowledge requirements; for example: “familiarity with basic concepts in the areas of networking, database operations, and data encryption” or “familiarity with <software>.”
 
-This Quick Start assumes familiarity with AWS Cloud Development Kit (AWS CDK), AWS Developer Tools, and {partner-product-short-name}.
+This Quick Start assumes familiarity with AWS Cloud Development Kit (AWS CDK), AWS Developer Tools, and {partner-product-short-name}. For more information, see https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-typescript.html[Working with the AWS CDK in TypeScript].
