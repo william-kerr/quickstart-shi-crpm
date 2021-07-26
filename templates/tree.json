@@ -973,7 +973,7 @@
                 },
                 "description": "Configures a Cloud9 instance",
                 "handler": "index.handler",
-                "runtime": "nodejs10.x",
+                "runtime": "nodejs14.x",
                 "timeout": 300
               }
             },

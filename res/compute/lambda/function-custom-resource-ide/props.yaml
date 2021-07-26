@@ -35,7 +35,7 @@ handler: 'index.handler'
 # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-runtime
 # Type: string
 # Required
-runtime: 'nodejs10.x'
+runtime: 'nodejs14.x'
 
 # Documentation: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-deadletterconfig
 # Type: object
