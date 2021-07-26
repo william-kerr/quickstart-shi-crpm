@@ -652,7 +652,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAAA02QTW4DMQiFz9K94/wtqu6qRuo2UXoCBxOJGduMbEgVjebuHdwuuuLxAQ/E3r+9+t3Le/huG4jjdgau6OcvCTC6071cQg0ZBaslZ5VJxZ24NKkKYuyKjbUCml4LkYS4LM78ZgrZWwsndO1o8kNhRHEp5FsMBj61gE04SKzxzjUHS/1sdtqE8/8F/azFAUcEzpmk2+PEjYTrsxduSikav1QecD3S4EQTJirY+Z92+MAirVtowmVxZe30Q9s+9jt/OKxvGRrRpmoRyuivv/EHQSg+5TIBAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAAA02QTW4DIQyFz9I9ISFV91UjddsoOQEBR/IM4BHYqarR3L2YVmpXfv4Mzz/Ors4drHt69Z9tF+K8D1TBrlf2YTanezn76jMwVE0+hBdhc6LSuEpgZRdoJDWA6l6IyEhlM8692MOfq8YVfbb6gxKY9qzyTcIMbJLPt+gVvEsJamBCIol3qtlrald1l8aU//cbU24mUIRAOSMPe1ioIVP9GoWbYIrKz5Um6DMrXHCBhAUG/9UGHlC4DQtJsG2m9Jd2avtHv9Dx2NeZGuKuSmHMYC8/8Rt8b9xeQgEAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "quickstart/CDKMetadata/Default"

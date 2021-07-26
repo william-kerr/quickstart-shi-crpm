@@ -1,5 +1,5 @@
 {
-  "version": "9.0.0",
+  "version": "12.0.0",
   "artifacts": {
     "Tree": {
       "type": "cdk:tree",
@@ -12,6 +12,7 @@
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
         "templateFile": "quickstart.template.json",
+        "validateOnSynth": false,
         "stackName": "quickstart-shi-crpm-ci-cd"
       },
       "metadata": {
@@ -454,12 +455,12 @@
             "trace": [
               "new MetadataResource (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
               "construct (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:202:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:198:5)",
               "injectMetadataResources (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
               "Object.synthesize (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
-              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
-              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:62:45)",
               "Object.onceWrapper (events.js:286:20)",
               "process.emit (events.js:198:13)",
               "process.EventEmitter.emit (domain.js:448:20)",
@@ -475,12 +476,12 @@
             "trace": [
               "new MetadataResource (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
               "construct (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:202:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:198:5)",
               "injectMetadataResources (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
               "Object.synthesize (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
-              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
-              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:62:45)",
               "Object.onceWrapper (events.js:286:20)",
               "process.emit (events.js:198:13)",
               "process.EventEmitter.emit (domain.js:448:20)",
@@ -489,13 +490,15 @@
             ]
           }
         ]
-      }
+      },
+      "displayName": "quickstart"
     },
     "ide": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
         "templateFile": "ide.template.json",
+        "validateOnSynth": false,
         "stackName": "quickstart-shi-crpm-ide"
       },
       "metadata": {
@@ -749,12 +752,12 @@
             "trace": [
               "new MetadataResource (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
               "construct (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:202:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:198:5)",
               "injectMetadataResources (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
               "Object.synthesize (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
-              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
-              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:62:45)",
               "Object.onceWrapper (events.js:286:20)",
               "process.emit (events.js:198:13)",
               "process.EventEmitter.emit (domain.js:448:20)",
@@ -770,12 +773,12 @@
             "trace": [
               "new MetadataResource (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
               "construct (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:140:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:201:5)",
-              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:197:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:202:5)",
+              "visit (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:198:5)",
               "injectMetadataResources (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:131:3)",
               "Object.synthesize (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
-              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:188:23)",
-              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:123:45)",
+              "App.synth (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.App.process.once (/home/ec2-user/environment/quickstart-shi-crpm/node_modules/@aws-cdk/core/lib/app.ts:62:45)",
               "Object.onceWrapper (events.js:286:20)",
               "process.emit (events.js:198:13)",
               "process.EventEmitter.emit (domain.js:448:20)",
@@ -784,7 +787,8 @@
             ]
           }
         ]
-      }
+      },
+      "displayName": "ide"
     }
   }
 }
