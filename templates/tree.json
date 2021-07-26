@@ -9,7 +9,7 @@
         "path": "Tree",
         "constructInfo": {
           "fqn": "@aws-cdk/core.Construct",
-          "version": "1.110.1"
+          "version": "1.115.0"
         }
       },
       "quickstart": {
@@ -21,7 +21,7 @@
             "path": "quickstart/IdeStackTemplateURL",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           },
           "CloudFormationRole": {
@@ -726,7 +726,7 @@
             "path": "quickstart/CodeCommitURL",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           },
           "CodePipelineName": {
@@ -734,7 +734,7 @@
             "path": "quickstart/CodePipelineName",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           },
           "CDKMetadata": {
@@ -746,7 +746,7 @@
                 "path": "quickstart/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.110.1"
+                  "version": "1.115.0"
                 }
               },
               "Condition": {
@@ -754,19 +754,19 @@
                 "path": "quickstart/CDKMetadata/Condition",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.110.1"
+                  "version": "1.115.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.110.1"
+          "version": "1.115.0"
         }
       },
       "ide": {
@@ -778,7 +778,7 @@
             "path": "ide/RepoName",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           },
           "EnvironmentEC2": {
@@ -1006,7 +1006,7 @@
             "path": "ide/Cloud9EnvironmentName",
             "constructInfo": {
               "fqn": "@aws-cdk/core.CfnOutput",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           },
           "CDKMetadata": {
@@ -1018,7 +1018,7 @@
                 "path": "ide/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.110.1"
+                  "version": "1.115.0"
                 }
               },
               "Condition": {
@@ -1026,25 +1026,25 @@
                 "path": "ide/CDKMetadata/Condition",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.110.1"
+                  "version": "1.115.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.110.1"
+              "version": "1.115.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.110.1"
+          "version": "1.115.0"
         }
       }
     },
     "constructInfo": {
       "fqn": "@aws-cdk/core.App",
-      "version": "1.110.1"
+      "version": "1.115.0"
     }
   }
 }
